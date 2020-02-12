@@ -15,4 +15,4 @@ scan barcode of food package to display info(barcode reader + raspberry pi)
   
 3.index.php
 
-   a.Datatables show the data
+   a.Datatables(https://datatables.net/) UI implement
