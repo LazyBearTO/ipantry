@@ -1,7 +1,7 @@
 # ipantry
 scan barcode of food package to display info(barcode reader + raspberry pi)
 
-1.ipantry.py
+1.scan.py
   
    a.read usb barcode scanner from 'dev/hidraw0/'
 
