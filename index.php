@@ -1,6 +1,6 @@
 <html>  
       <head>  
-           <title>ipantry</title>  
+           <title>scanned</title>  
            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />  
            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>  
            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>  
@@ -8,7 +8,12 @@
       <body>  
            <div class="container">  
                 <div class="table-responsive">  
-                     <h3 align="center">Ipantry</h3><br />  
+                     <h3 align="center">
+                     <a href="."><button type="button" class="btn btn-primary btn-lg active">Scanned</button></a>
+                     <a href="inventory.php"><button type="button" class="btn btn-success btn-lg inactive">Inventory</button></a>
+                     <button type="button" class="btn btn-warning btn-lg inactive">Wishlist</button>
+                    </div>               
+                     </h3><br />  
                      <div id="live_data"></div>                 
                 </div>  
            </div>  
@@ -45,7 +50,7 @@
            $.ajax({  
                 url:"insert.php",  
                 method:"POST",  
-                data:{scanned_txt:scanned_txt, product_name:product_name, brand_name:brand_name, image_thumb_url:image_thumb_url},  
+                data:{image_thumb_url:image_thumb_url, scanned_txt:scanned_txt, product_name:product_name, brand_name:brand_name},  
                 dataType:"text",  
                 success:function(data)  
                 {  
@@ -101,6 +106,26 @@
                      }  
                 });  
            }  
+      }); 
+      $(document).on('click', '.btn_stock', function(){  
+           var id=$(this).data("id7");  
+          //  var scanned_txt = $(this).data("scanned_txt");  
+          //  var product_name = $('#product_name').text(); 
+          //  var brand_name = $('#brand_name').text(); 
+          //  var image_thumb_url = $('#image_thumb_url').text(); 
+           //if(confirm("Are you sure you want to stock this?"))  
+           {  
+                $.ajax({  
+                     url:"stock.php",  
+                     method:"POST",  
+                     data:{id:id},   
+                     dataType:"text",  
+                     success:function(data){  
+                          alert(data);  
+                          fetch_data();  
+                     }  
+                });  
+           } 
       });  
  });  
  </script>
