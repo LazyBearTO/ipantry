@@ -82,7 +82,7 @@
            edit_data(id, brand_name, "brand_name");  
       });  
       $(document).on('click', '.btn_delete', function(){  
-           var id=$(this).data("id5");  
+           var id=$(this).data("id6");  
            if(confirm("Are you sure you want to delete this?"))  
            {  
                 $.ajax({  
