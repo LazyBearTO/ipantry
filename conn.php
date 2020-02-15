@@ -1,3 +1,3 @@
 <?php  
- $connect = mysqli_connect("localhost", "user", "pass", "ipantry");  
+ $connect = mysqli_connect("localhost", "ipantry", "ipantry", "ipantry");  
  
