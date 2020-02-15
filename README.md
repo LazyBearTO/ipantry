@@ -15,4 +15,4 @@ scan barcode of food package to display info(barcode reader + raspberry pi)
   
 3.index.php
 
-   a.Datatables(https://datatables.net/) UI implement
+   a. Ajax+Jquery+php+mysql + https://www.webslesson.info/2016/02/live-table-add-edit-delete-using-ajax-jquery-in-php-mysql.html
