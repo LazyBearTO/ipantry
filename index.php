@@ -1,57 +1,101 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>iPantry</title>
-	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.min.css"/>
-	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css"/>
-	<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
-	<script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
-	</head>
-<body class="gb-info">
-	<div class="container">
-		<h1 class="text-center">iPantry</h1>
-		<div>
-			<table id="scanned_item"class="table table-striped table-bordered table-hover">
-	        	<thead>
-	                <tr>
-						<th>id</th>
-						<th>barcode</th>
-						<th>product_name</th>
-						<th>brand_name</th>
-						<th>product_pic</th>
-						<th>scan_time</th>
-					</tr>
-	          	</thead>
-	        	<tbody>
-					<?php 
-						 $conn = new mysqli("localhost","joey","joey","ipantry");
-						 $sql = "SELECT * FROM scanned_item";
-						 $res = $conn->query($sql);
-						 while($row=$res->fetch_assoc()){					 
-		                 ?> 
-		        		<tr>
-                        <td><?= $row['id']; ?></td>
-                        <td><?= $row['scanned_txt']; ?></td>
-                        <td><?= $row['product_name']; ?></td>
-		        		<td><?= $row['brand_name']; ?></td>
-		        		<td><a href="<?=$row['image_url'];?>" target="_blank"><img src =<?=$row['image_thumb_url'];?>></a></td>
-		        		<td><?= $row['scanned_datetime']; ?></td>
-                		</tr>
-						 <?php } ?>
-	        	</tbody>
-      		</table>
-
-      		
-		</div>
-
-<script type="text/javascript">
-	$(document).ready(function(){
-			$('table').DataTable({
-				"order": [[ 0, "desc" ]]
-			});
-		});
-</script>
-</body>
-</html>
+<html>  
+      <head>  
+           <title>Live Table Data Edit</title>  
+           <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />  
+           <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>  
+           <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>  
+      </head>  
+      <body>  
+           <div class="container">  
+                <div class="table-responsive">  
+                     <h3 align="center">Ipantry</h3><br />  
+                     <div id="live_data"></div>                 
+                </div>  
+           </div>  
+      </body>  
+ </html>  
+ <script>  
+ $(document).ready(function(){  
+      function fetch_data()  
+      {  
+           $.ajax({  
+                url:"select.php",  
+                method:"POST",  
+                success:function(data){  
+                     $('#live_data').html(data);  
+                }  
+           });  
+      }  
+      fetch_data();  
+      $(document).on('click', '#btn_add', function(){  
+           var scanned_txt = $('#scanned_txt').text();  
+           var product_name = $('#product_name').text(); 
+           var brand_name = $('#brand_name').text(); 
+           var image_thumb_url = $('#image_thumb_url').text(); 
+           if(scanned_txt == '')  
+           {  
+                alert("Enter barcode");  
+                return false;  
+           }  
+           if(product_name == '')  
+           {  
+                alert("Enter product_name");  
+                return false;  
+           }  
+           $.ajax({  
+                url:"insert.php",  
+                method:"POST",  
+                data:{scanned_txt:scanned_txt, product_name:product_name, brand_name:brand_name, image_thumb_url:image_thumb_url},  
+                dataType:"text",  
+                success:function(data)  
+                {  
+                     alert(data);  
+                     fetch_data();  
+                }  
+           })  
+      });  
+      function edit_data(id, text, column_name)  
+      {  
+           $.ajax({  
+                url:"edit.php",  
+                method:"POST",  
+                data:{id:id, text:text, column_name:column_name},  
+                dataType:"text",  
+                success:function(data){  
+                     //alert(data);  
+                }  
+           });  
+      }  
+      $(document).on('blur', '.scanned_txt', function(){  
+           var id = $(this).data("id1");  
+           var scanned_txt = $(this).text();  
+           edit_data(id, scanned_txt, "scanned_txt");  
+      });  
+      $(document).on('blur', '.product_name', function(){  
+           var id = $(this).data("id2");  
+           var product_name = $(this).text();  
+           edit_data(id, product_name, "product_name");  
+      });
+      $(document).on('blur', '.brand_name', function(){  
+           var id = $(this).data("id3");  
+           var brand_name = $(this).text();  
+           edit_data(id, brand_name, "brand_name");  
+      });  
+      $(document).on('click', '.btn_delete', function(){  
+           var id=$(this).data("id5");  
+           if(confirm("Are you sure you want to delete this?"))  
+           {  
+                $.ajax({  
+                     url:"delete.php",  
+                     method:"POST",  
+                     data:{id:id},  
+                     dataType:"text",  
+                     success:function(data){  
+                          //alert(data);  
+                          fetch_data();  
+                     }  
+                });  
+           }  
+      });  
+ });  
+ </script>
