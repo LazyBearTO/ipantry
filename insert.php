@@ -14,8 +14,7 @@
                '".$image_thumb_url."'
                )";  
  
- echo $sql;
-
+ 
  if(mysqli_query($connect, $sql))  
  {  
       //echo 'Data Inserted';  

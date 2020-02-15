@@ -25,7 +25,7 @@
           <td id="product_name" contenteditable>product name</td>
           <td id="brand_name" contenteditable>brand name</td> 
           <td id="image_thumb_url" contenteditable>thumb.png</td>
-          <td id="scanned_datetime" contenteditable>scanned_datetime</td> 
+          <td id="scanned_datetime"></td> 
           <td><button type="button" name="btn_add" id="btn_add" class="btn btn-xs btn-success">Add</button></td>  
      </tr>  
 ';   
@@ -38,7 +38,7 @@
                      <td class="product_name" data-id2="'.$row["id"].'" contenteditable>'.$row["product_name"].'</td>
                      <td class="brand_name" data-id3="'.$row["id"].'" contenteditable>'.$row["brand_name"].'</td>
                      <td class="image_thumb_url" data-id4="'.$row["id"].'" contenteditable><img src='.$row["image_thumb_url"].'></img></td>
-                     <td class="brand_name" data-id5="'.$row["id"].'" contenteditable>'.$row["scanned_datetime"].'</td>  
+                     <td class="scanned_datetime" data-id5="'.$row["id"].'">'.$row["scanned_datetime"].'</td>  
                      <td><button type="button" name="delete_btn" data-id6="'.$row["id"].'" class="btn btn-xs btn-danger btn_delete">Delete</button></td>  
                 </tr>  
            ';  

@@ -49,7 +49,7 @@
                 dataType:"text",  
                 success:function(data)  
                 {  
-                     alert(data);  
+                     //alert(data);  
                      fetch_data();  
                 }  
            })  
@@ -80,7 +80,12 @@
            var id = $(this).data("id3");  
            var brand_name = $(this).text();  
            edit_data(id, brand_name, "brand_name");  
-      });  
+      });
+      $(document).on('blur', '.image_thumb_url', function(){  
+           var id = $(this).data("id4");  
+           var image_thumb_url = $(this).text();  
+           edit_data(id, image_thumb_url, "image_thumb_url");  
+      }); 
       $(document).on('click', '.btn_delete', function(){  
            var id=$(this).data("id6");  
            if(confirm("Are you sure you want to delete this?"))  
