@@ -13,7 +13,7 @@
                 <h3 align="center">
                      <a href="."><button type="button" class="btn btn-primary btn-lg active">Scanned</button></a>
                      <a href="inventory.php"><button type="button" class="btn btn-success btn-lg inactive">Inventory</button></a>
-                     <button type="button" class="btn btn-warning btn-lg inactive">Wishlist</button>
+                     <button type="button" class="btn btn-warning btn-lg inactive">Shopp'List</button>
                     </div>               
                      </h3>
                      <div id="live_data"></div>                 

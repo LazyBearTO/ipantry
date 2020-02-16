@@ -14,8 +14,8 @@
     <div class="table-responsive">  
         <table class="table table-bordered table-striped">
           <tr>  
-               <td colspan=2>      
-               Total: '.$total.'
+               <td colspan=2 >      
+               <div class="numberCircle">'.$total.'</div>
                </td>
           </tr>  
           ';  
