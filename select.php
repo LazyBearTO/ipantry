@@ -9,7 +9,7 @@
           <table class="table table-responsive">
           <tr>  
                <td colspan=2>      
-               <img src="barcode.png" >
+               <img src="img/barcode.png" >
                <input id="scanned_txt" type="text" placeholder="068400584742"/>
                <button type="button" name="btn_add" id="btn_add" class="btn btn-s btn-primary" >Add</button>
                </td>
