@@ -13,7 +13,7 @@
  $image_thumb_url = $row["image_thumb_url"];       
  //var_dump($row);
  //exit();
- //check  it exits
+ //find barcode in inventory
  $sql = "SELECT * FROM inventory WHERE scanned_txt = '".$scanned_txt."'";
  //echo $sql;
  //exit();
@@ -25,7 +25,7 @@
         $count = 0;
         while($row = $result->fetch_assoc()) {
             //echo "Count: " . $row["item_count"];
-            $id = $row["id"];
+            $inventory_id = $row["id"];
             $item_count = $row["item_count"] + 1;      
         }
         $sql = "UPDATE inventory
@@ -33,19 +33,21 @@
                 product_name = '".$product_name."', 
                 brand_name = '".$brand_name."', 
                 image_thumb_url = '".$image_thumb_url."', 
-                item_count = $item_count
-                WHERE (id=$id)"; 
+                item_count = $item_count,
+                moved_time = now()
+                WHERE (id=$inventory_id)"; 
         if(mysqli_query($connect, $sql))  
             {  
                 echo $sql;  
             }  
     } else {
-    $sql = "INSERT INTO inventory(scanned_txt, product_name, brand_name, image_thumb_url, item_count) 
+    $sql = "INSERT INTO inventory(scanned_txt, product_name, brand_name, image_thumb_url, item_count, moved_time) 
             VALUES('".$scanned_txt."',
                   '".$product_name."',
                   '".$brand_name."',
                   '".$image_thumb_url."',
-                  '1'
+                  '1',
+                  now()
                   )"; 
     //echo $sql;
         if(mysqli_query($connect, $sql))  
@@ -53,6 +55,16 @@
                 echo $sql;  
             }  
     }
+
+    //remove from scanned_item
+    $sql = "UPDATE scanned_item
+            SET moved_time = NOW()
+            WHERE (id=$id)"; 
+    if(mysqli_query($connect, $sql))  
+        {  
+            echo $sql;  
+        }  
+
 
  }  
 
