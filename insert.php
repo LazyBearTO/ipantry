@@ -19,7 +19,6 @@
                '".$image_thumb_url."'
                )";  
  
-
  if(mysqli_query($connect, $sql))  
  {  
       echo $sql;  

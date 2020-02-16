@@ -98,14 +98,14 @@
                      data:{id:id},  
                      dataType:"text",  
                      success:function(data){  
-                          //alert(data);  
+                          alert(data);  
                           fetch_data();  
                      }  
                 });  
            }  
       }); 
       $(document).on('click', '.btn_stock', function(){  
-           var id=$(this).data("id7"); 
+           var id=$(this).data("id9"); 
            {  
                 $.ajax({  
                      url:"stock.php",  
@@ -113,7 +113,7 @@
                      data:{id:id},   
                      dataType:"text",  
                      success:function(data){  
-                          //alert(data);  
+                          alert(data);  
                           fetch_data();  
                      }  
                 });  

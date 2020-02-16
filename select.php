@@ -2,7 +2,7 @@
  include_once 'conn.php';
  
  $output = ''; 
- $sql = "SELECT * FROM scanned_item WHERE (moved_time IS NULL) ORDER BY id DESC";  
+ $sql = "SELECT * FROM scanned_item ORDER BY id DESC";  
  $result = mysqli_query($connect, $sql);  
  $output .= '  
       <div class="table-responsive table-boarderless">  
@@ -11,7 +11,7 @@
                <td colspan=2>      
                <img src="img/barcode.png" >
                <input id="scanned_txt" type="text" placeholder="068400584742"/>
-               <button type="button" name="btn_add" id="btn_add" class="btn btn-s btn-primary" >Add</button>
+               <button type="button" name="btn_add" id="btn_add" class="btn btn-s btn-primary" >Scan</button>
                </td>
           </tr>
           ';    
@@ -20,7 +20,7 @@
     
      while($row = mysqli_fetch_array($result))  
       {  
-           $output .= '  
+          $output .= '  
                 <tr>  
                      <td class="image_thumb_url" data-id4="'.$row["id"].'"><img src='.$row["image_thumb_url"].' width=100px height=120px></img>
                      </td>
@@ -29,14 +29,20 @@
                      <div class="product_name" data-id2="'.$row["id"].'" contenteditable>'.$row["product_name"].'</div>
                      <div class="brand_name" data-id3="'.$row["id"].'" contenteditable>'.$row["brand_name"].'</div>
                      <div class="scanned_datetime" data-id5="'.$row["id"].'">'.$row["scanned_datetime"].'</div>
-                     <button type="button" name="wish_btn" data-id8="'.$row["id"].'" class="btn btn-s btn-warning ">Wish</button>
-                     <button type="button" name="stock_btn" data-id7="'.$row["id"].'" class="btn btn-s btn-success btn_stock">Stock</button>
-                     <button type="button" name="delete_btn" data-id6="'.$row["id"].'" class="btn btn-s btn-danger btn_delete">Delete</button>   
-                     </td>
-                     
+                    
+                     <button type="button" name="delete_btn" data-id6="'.$row["id"].'" class="btn btn-s btn-danger btn_delete">To Trash</button>
+                  
+                     ';
+          if ($row["stock_datetime"] != NULL){
+               $output .= '<button type="button" name="stock_btn" data-id7="'.$row["id"].'" class="btn btn-s btn-success btn_stock" disabled>In Pantry</button>';
+          }else{
+               $output .= '<button type="button" name="stock_btn" data-id9="'.$row["id"].'" class="btn btn-s btn-success btn_stock" >Stock It</button>';
+
+          }
+          $output .= ' </td>
                 </tr>  
-           ';  
-      }  
+           '; 
+      }
      
  }  
  else  
