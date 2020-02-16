@@ -7,10 +7,10 @@
  //echo $sql;
  //exit();
  $row = $result->fetch_assoc();
- $scanned_txt = $row["scanned_txt"];
- $product_name = $row["product_name"];
- $brand_name = $row["brand_name"]; 
- $image_thumb_url = $row["image_thumb_url"];       
+ $scanned_txt = mysqli_real_escape_string($connect,$row["scanned_txt"]);
+ $product_name = mysqli_real_escape_string($connect,$row["product_name"]);
+ $brand_name = mysqli_real_escape_string($connect,$row["brand_name"]); 
+ $image_thumb_url = mysqli_real_escape_string($connect,$row["image_thumb_url"]);       
  //var_dump($row);
  //exit();
  //find barcode in inventory
@@ -38,7 +38,7 @@
                 WHERE (id=$inventory_id)"; 
         if(mysqli_query($connect, $sql))  
             {  
-                echo $sql;  
+                //echo $sql;  
             }  
     } else {
     $sql = "INSERT INTO inventory(scanned_txt, product_name, brand_name, image_thumb_url, item_count, moved_time) 
@@ -52,7 +52,7 @@
     //echo $sql;
         if(mysqli_query($connect, $sql))  
             {  
-                echo $sql;  
+                //echo $sql;  
             }  
     }
 
@@ -62,7 +62,7 @@
             WHERE (id=$id)"; 
     if(mysqli_query($connect, $sql))  
         {  
-            echo $sql;  
+            //echo $sql;  
         }  
 
 

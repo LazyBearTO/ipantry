@@ -6,17 +6,13 @@
  $result = mysqli_query($connect, $sql);  
  $output .= '  
       <div class="table-responsive table-boarderless">  
-           <table class="table table-striped">  
-             ';
- $output .= '
+          <table class="table table-responsive">
           <tr>  
-          <td id="image_thumb_url" contenteditable>thumb.png</td>
-          <td>
-               <div id="scanned_txt" contenteditable>barcode</div>  
-               <div id="product_name" contenteditable>product name</div>
-               <div id="brand_name" contenteditable>brand name</div>
-               <button type="button" name="btn_add" id="btn_add" class="btn btn-s btn-primary" style="float: right;margin-top:-50px">Add</button></td>
-           <td>
+               <td colspan=2>      
+               <img src="barcode.png" >
+               <input id="scanned_txt" type="text" placeholder="068400584742"/>
+               <button type="button" name="btn_add" id="btn_add" class="btn btn-s btn-primary" >Add</button>
+               </td>
           </tr>
           ';    
  if(mysqli_num_rows($result) > 0)  
@@ -53,3 +49,57 @@
       </div>';  
  echo $output;  
  ?>
+  <script type="text/javascript">
+      
+     function fetch_data()  
+      {  
+           $.ajax({  
+                url:"select.php",  
+                method:"POST",  
+                success:function(data){  
+                     $('#live_data').html(data);  
+                }  
+           });  
+      }   
+   
+     $('#scanned_txt').keypress(function(event){
+          var keycode = (event.keyCode ? event.keyCode : event.which);
+          if(keycode == '13'){
+               var scanned_txt = $('#scanned_txt')[0].value;
+               if(scanned_txt == '')  
+               {  
+                    alert("Enter barcode");  
+                    return false;  
+               }
+              
+               $.ajax({  
+                    url:"insert.php",  
+                    method:"POST",  
+                    data:{scanned_txt:scanned_txt},  
+                    dataType:"text",  
+                    success:function(data)  
+                    {  
+                         //alert(data);  
+                         fetch_data();
+                         
+                    }  
+               })
+                //$('#scanned_txt')[0].focus();
+               //document.getElementById("scanned_txt").focus(); 
+          }
+    
+     event.stopPropagation();
+     });
+     // Your code here
+  
+             
+          //Bind keypress event to document
+          //   $(document).keypress(function(event){
+          //       var keycode = (event.keyCode ? event.keyCode : event.which);
+          //       if(keycode == '13'){
+          //           alert('You pressed a "enter" key in somewhere');    
+          //       }
+          //   });
+    
+          
+ </script>

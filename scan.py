@@ -126,8 +126,8 @@ def insert_db(str_barcode):
 
     mydb = mysql.connector.connect(
     host="localhost",
-    user="username",
-    passwd="password",
+    user="ipantry",
+    passwd="ipantry",
     database="ipantry"
     )
     mycursor = mydb.cursor()

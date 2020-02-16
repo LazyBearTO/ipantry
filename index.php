@@ -2,14 +2,15 @@
       <head>  
            <title>scanned</title>
            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-           <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />  
+           <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+           <link rel="stylesheet" type="text/css" href="styles.css">
            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>  
-           <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>  
+           <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
       </head>  
       <body>  
            <div class="container">  
                 <div class="table-borderless">  
-                     <h3 align="center">
+                <h3 align="center">
                      <a href="."><button type="button" class="btn btn-primary btn-lg active">Scanned</button></a>
                      <a href="inventory.php"><button type="button" class="btn btn-success btn-lg inactive">Inventory</button></a>
                      <button type="button" class="btn btn-warning btn-lg inactive">Wishlist</button>
@@ -34,24 +35,19 @@
       }  
       fetch_data();  
       $(document).on('click', '#btn_add', function(){  
-           var scanned_txt = $('#scanned_txt').text();  
-           var product_name = $('#product_name').text(); 
-           var brand_name = $('#brand_name').text(); 
-           var image_thumb_url = $('#image_thumb_url').text(); 
+           //var scanned_txt = $('#scanned_txt').value;
+           var scanned_txt = document.getElementById("scanned_txt").value;
+           //alert(scanned_txt);
+           //end();
            if(scanned_txt == '')  
            {  
                 alert("Enter barcode");  
                 return false;  
            }  
-           if(product_name == '')  
-           {  
-                alert("Enter product_name");  
-                return false;  
-           }  
            $.ajax({  
                 url:"insert.php",  
                 method:"POST",  
-                data:{image_thumb_url:image_thumb_url, scanned_txt:scanned_txt, product_name:product_name, brand_name:brand_name},  
+                data:{scanned_txt:scanned_txt},  
                 dataType:"text",  
                 success:function(data)  
                 {  
@@ -109,12 +105,7 @@
            }  
       }); 
       $(document).on('click', '.btn_stock', function(){  
-           var id=$(this).data("id7");  
-          //  var scanned_txt = $(this).data("scanned_txt");  
-          //  var product_name = $('#product_name').text(); 
-          //  var brand_name = $('#brand_name').text(); 
-          //  var image_thumb_url = $('#image_thumb_url').text(); 
-           //if(confirm("Are you sure you want to stock this?"))  
+           var id=$(this).data("id7"); 
            {  
                 $.ajax({  
                      url:"stock.php",  
@@ -122,11 +113,14 @@
                      data:{id:id},   
                      dataType:"text",  
                      success:function(data){  
-                          alert(data);  
+                          //alert(data);  
                           fetch_data();  
                      }  
                 });  
            } 
-      });  
+      });
+      
+    
  });  
  </script>
+

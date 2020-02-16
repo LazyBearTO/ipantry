@@ -2,7 +2,7 @@
  include_once 'conn.php';
  
  $output = ''; 
- $sql = "SELECT * FROM inventory ORDER BY item_count DESC";  
+ $sql = "SELECT * FROM inventory ORDER BY moved_time DESC";  
  $result = mysqli_query($connect, $sql);  
  $output .= '  
     <div class="table-responsive">  
@@ -15,7 +15,7 @@
       {  
            $output .= '  
                 <tr>  
-                    <td class="image_thumb_url" data-id4="'.$row["id"].'" ><img src='.$row["image_thumb_url"].' width=100px height=120px></img></td>      
+                    <td class="image_thumb_url" data-id4="'.$row["id"].'"><img src='.$row["image_thumb_url"].' width=100px height=120px></img></td>      
                     <td>
                     <div class="item_count" data-id6="'.$row["item_count"].'" >'.$row["item_count"].'</div> 
                     <div class="scanned_txt" data-id1="'.$row["id"].'" >'.$row["scanned_txt"].'</div>
