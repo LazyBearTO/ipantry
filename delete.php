@@ -5,6 +5,13 @@
 
  if(mysqli_query($connect, $sql))  
  {  
-      //echo 'Data Deleted';  
+       echo $sql."\n";  
+ }
+ $sql = "DELETE FROM inventory_item WHERE scanned_id = '".$_POST["id"]."'";
+
+ if(mysqli_query($connect, $sql))  
+ {  
+      echo $sql."\n";  
  }  
+   
  ?>
