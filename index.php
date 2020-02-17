@@ -104,7 +104,7 @@
                     },
                     dataType: "text",
                     success: function(data) {
-                        alert(data);
+                        //alert(data);
                         fetch_data();
                     }
                 });
@@ -120,7 +120,7 @@
                     },
                     dataType: "text",
                     success: function(data) {
-                        alert(data);
+                        //alert(data);
                         fetch_data();
                     }
                 });
