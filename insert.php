@@ -1,6 +1,6 @@
 <?php
-include_once 'conn.php';
-include_once 'dao.php';
+include_once 'db/conn.php';
+include_once 'db/dao.php';
 
 $scanned_txt = mysqli_real_escape_string($connect, $_POST["scanned_txt"]);
 

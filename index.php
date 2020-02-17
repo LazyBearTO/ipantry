@@ -15,15 +15,20 @@
             <h3 align="center">
                 <a href="."><button type="button" class="btn btn-primary btn-lg active">Scan</button></a>
                 <a href="inventory.php"><button type="button" class="btn btn-success btn-lg inactive">Pantry</button></a>
-                <button type="button" class="btn btn-warning btn-lg inactive">Shopp'List</button>
+                <button id="btn_reset" type="button" class="btn btn-warning btn-lg inactive">reset</button>
             </h3>
+            <h4>
+                <input id="scanned_txt" type="text" class="form-control" placeholder="enter barcode here then press enter" />
+                <!-- <button type="submit" name="btn_add" id="btn_add" class="btn btn-s btn-primary">Scan</button> -->
+            </h4>
             <div id="live_data"></div>
         </div>
     </div>
 </body>
 
 </html>
-<script>
+
+<script type="text/javascript">
     $(document).ready(function() {
         function fetch_data() {
             $.ajax({
@@ -36,10 +41,7 @@
         }
         fetch_data();
         $(document).on('click', '#btn_add', function() {
-            //var scanned_txt = $('#scanned_txt').value;
-            var scanned_txt = document.getElementById("scanned_txt").value;
-            //alert(scanned_txt);
-            //end();
+            var scanned_txt = $('#scanned_txt')[0].value;
             if (scanned_txt == '') {
                 alert("Enter barcode");
                 return false;
@@ -127,6 +129,54 @@
             }
         });
 
+        $('#scanned_txt').keypress(function(event) {
+            var keycode = (event.keyCode ? event.keyCode : event.which);
+            if (keycode == '13') {
+                var input_scanned_txt = $('#scanned_txt.form-control');
+                var scanned_txt = $('#scanned_txt')[0].value;
+                if (scanned_txt == '') {
+                    alert("Enter barcode");
+                    return false;
+                }
+                $.ajax({
+                    url: "insert.php",
+                    method: "POST",
+                    data: {
+                        scanned_txt: scanned_txt
+                    },
+                    dataType: "text",
+                    success: function(data) {
+                        //alert(data);  
+                        fetch_data();
+                    }
+                })
+                //$('#scanned_txt').autofocus();
+                //input_scanned_txt[0].value = "";
+                //input_scanned_txt[0].autofocus = 1;
+                //('#scanned_txt').value = "22";
+                $('#scanned_txt.form-control')[0].value = '';
+                //console.log(input_scanned_txt);
+                //console.log("vali:" + $('#scanned_txt.form-control')[0].value)
+                //document.getElementById("scanned_txt").focus(); 
+            }
+
+            event.stopPropagation();
+        });
+
+
+        $(document).on('click', '#btn_reset', function() {
+
+            if (confirm("Reset?")) {
+                $.ajax({
+                    url: "reset.php",
+                    method: "POST",
+                    success: function(data) {
+                        alert(data);
+                        fetch_data();
+                    }
+                })
+            }
+        });
 
     });
 </script>

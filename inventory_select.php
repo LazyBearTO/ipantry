@@ -1,8 +1,8 @@
 <?php
-include_once 'conn.php';
-include_once 'dao.php';
+include_once 'db/conn.php';
+include_once 'db/dao.php';
 
-$sql = "SELECT  * FROM ipantry.scanned_item GROUP BY scanned_txt";
+$sql = "SELECT  * FROM ipantry.scanned_item GROUP BY scanned_txt ORDER BY stock_datetime DESC";
 $result = mysqli_query($connect, $sql);
 
 $count_total = get_total_count();

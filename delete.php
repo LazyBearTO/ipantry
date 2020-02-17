@@ -1,5 +1,5 @@
 <?php
-include_once 'conn.php';
+include_once 'db/conn.php';
 
 $id = $_POST["id"];
 

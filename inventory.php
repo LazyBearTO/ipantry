@@ -15,7 +15,7 @@
             <h3 align="center">
                 <a href="."><button type="button" class="btn btn-primary btn-lg active">Scan</button></a>
                 <a href="inventory.php"><button type="button" class="btn btn-success btn-lg inactive">Pantry</button></a>
-                <button type="button" class="btn btn-warning btn-lg inactive">Shopp'List</button>
+                <button id="btn_reset" type="button" class="btn btn-warning btn-lg inactive">reset</button>
             </h3>
             <div id="live_data"></div>
         </div>
@@ -51,7 +51,19 @@
                 }
             });
         }
+        $(document).on('click', '#btn_reset', function() {
 
+            if (confirm("Reset?")) {
+                $.ajax({
+                    url: "reset.php",
+                    method: "POST",
+                    success: function(data) {
+                        alert(data);
+                        fetch_data();
+                    }
+                })
+            }
+        });
 
     });
 </script>

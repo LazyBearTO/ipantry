@@ -1,5 +1,5 @@
 <?php  
- include_once 'conn.php';
+ include_once 'db/conn.php';
 
  $id  = $_POST["id"];
  $sql = "SELECT * FROM scanned_item WHERE id = ".$id;
@@ -73,4 +73,4 @@
 //  {  
 //       echo $sql;  
 //  }  
-//  ?>
+//  

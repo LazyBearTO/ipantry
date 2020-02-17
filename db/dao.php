@@ -1,7 +1,5 @@
 <?php
-include_once 'conn.php';
-
-
+include_once 'db/conn.php';
 
 function get_total_count()
 {
@@ -33,10 +31,10 @@ function get_count(string $str_barcode)
 {
     $connect = mysqli_connect("localhost", "ipantry", "ipantry", "ipantry");
     $sql = "select";
-    $sql .= "(SELECT count(scanned_txt)  FROM ipantry.scanned_item WHERE scanned_txt =" . $str_barcode . ") as Total, ";
-    $sql .= "(SELECT count(scanned_txt)  FROM ipantry.scanned_item WHERE scanned_txt =" . $str_barcode . " and scanned_datetime is not null) as Scanned, ";
-    $sql .= "(SELECT count(scanned_txt)  FROM ipantry.scanned_item WHERE scanned_txt =" . $str_barcode . " and stock_datetime is not null) as Stocked, ";
-    $sql .= "(SELECT count(scanned_txt)  FROM ipantry.scanned_item WHERE scanned_txt =" . $str_barcode . " and trash_datetime is not null) as Trashed";
+    $sql .= "(SELECT count(scanned_txt)  FROM ipantry.scanned_item WHERE scanned_txt ='" . $str_barcode . "') as Total, ";
+    $sql .= "(SELECT count(scanned_txt)  FROM ipantry.scanned_item WHERE scanned_txt ='" . $str_barcode . "' and scanned_datetime is not null) as Scanned, ";
+    $sql .= "(SELECT count(scanned_txt)  FROM ipantry.scanned_item WHERE scanned_txt ='" . $str_barcode . "' and stock_datetime is not null) as Stocked, ";
+    $sql .= "(SELECT count(scanned_txt)  FROM ipantry.scanned_item WHERE scanned_txt ='" . $str_barcode . "' and trash_datetime is not null) as Trashed";
 
 
     $result = mysqli_query($connect, $sql);
