@@ -39,8 +39,9 @@ CREATE TABLE `scanned_item` (
   `scanned_datetime` datetime NOT NULL DEFAULT current_timestamp(),
   `stock_datetime` datetime DEFAULT NULL,
   `trash_datetime` datetime DEFAULT NULL,
+  `lastop_datetime` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -49,7 +50,7 @@ CREATE TABLE `scanned_item` (
 
 LOCK TABLES `scanned_item` WRITE;
 /*!40000 ALTER TABLE `scanned_item` DISABLE KEYS */;
-INSERT INTO `scanned_item` VALUES (1,'3564700571170 ','Pesto verde','Turini,Marque repère','https://static.openfoodfacts.org/images/products/356/470/057/1170/front_fr.49.200.jpg','2020-02-17 17:10:58','2020-02-17 17:26:27',NULL),(2,'3564700652657 ','Speculoos pocket','P\'tit déli,Marque Repère','https://static.openfoodfacts.org/images/products/356/470/065/2657/front_en.3.200.jpg','2020-02-17 17:11:16','2020-02-17 17:26:28',NULL),(3,'3564700571170','Pesto verde','Turini,Marque repère','https://static.openfoodfacts.org/images/products/356/470/057/1170/front_fr.49.200.jpg','2020-02-17 17:13:57',NULL,NULL),(4,'0733739021021 ','Plant Protein Complex','Now Sports','https://static.openfoodfacts.org/images/products/073/373/902/1021/front_en.4.200.jpg','2020-02-17 17:14:10',NULL,NULL),(5,'3329778164064 ','P\'tit Yop arômes naturels goût vanille','Yoplait','https://static.openfoodfacts.org/images/products/332/977/816/4064/front_fr.35.200.jpg','2020-02-17 17:14:19',NULL,NULL),(6,'3329778164064 ','P\'tit Yop arômes naturels goût vanille','Yoplait','https://static.openfoodfacts.org/images/products/332/977/816/4064/front_fr.35.200.jpg','2020-02-17 17:14:21','2020-02-17 17:26:43',NULL);
+INSERT INTO `scanned_item` VALUES (1,'3564700652657 ','Speculoos pocket','P\'tit déli,Marque Repère','https://static.openfoodfacts.org/images/products/356/470/065/2657/front_en.3.200.jpg','2020-02-17 18:46:03','2020-02-17 18:46:27',NULL,'2020-02-17 18:46:27'),(2,'0733739021021 ','Plant Protein Complex','Now Sports','https://static.openfoodfacts.org/images/products/073/373/902/1021/front_en.4.200.jpg','2020-02-17 18:46:13','2020-02-17 18:46:28',NULL,'2020-02-17 18:46:28'),(3,'0733739021021 ','Plant Protein Complex','Now Sports','https://static.openfoodfacts.org/images/products/073/373/902/1021/front_en.4.200.jpg','2020-02-17 18:46:16',NULL,'2020-02-17 18:46:31','2020-02-17 18:46:16'),(4,'0733739021021 ','Plant Protein Complex','Now Sports','https://static.openfoodfacts.org/images/products/073/373/902/1021/front_en.4.200.jpg','2020-02-17 18:46:17','2020-02-17 18:46:32',NULL,'2020-02-17 18:46:32'),(5,'3564700652657 ','Speculoos pocket','P\'tit déli,Marque Repère','https://static.openfoodfacts.org/images/products/356/470/065/2657/front_en.3.200.jpg','2020-02-17 18:46:24',NULL,'2020-02-17 18:46:34','2020-02-17 18:46:24'),(6,'3564700652657 ','Speculoos pocket','P\'tit déli,Marque Repère','https://static.openfoodfacts.org/images/products/356/470/065/2657/front_en.3.200.jpg','2020-02-17 18:46:25','2020-02-17 18:59:24',NULL,'2020-02-17 18:59:24'),(7,'3564700652657','Speculoos pocket','P\'tit déli,Marque Repère','https://static.openfoodfacts.org/images/products/356/470/065/2657/front_en.3.200.jpg','2020-02-17 18:47:09',NULL,NULL,'2020-02-17 18:47:09'),(8,'0733739021021','Plant Protein Complex','Now Sports','https://static.openfoodfacts.org/images/products/073/373/902/1021/front_en.4.200.jpg','2020-02-17 18:47:23',NULL,'2020-02-17 18:59:36','2020-02-17 18:47:23'),(9,'3564700652657','Speculoos pocket','P\'tit déli,Marque Repère','https://static.openfoodfacts.org/images/products/356/470/065/2657/front_en.3.200.jpg','2020-02-17 18:47:33',NULL,'2020-02-17 19:10:37','2020-02-17 18:47:33'),(10,'0733739021021','Plant Protein Complex','Now Sports','https://static.openfoodfacts.org/images/products/073/373/902/1021/front_en.4.200.jpg','2020-02-17 19:10:17','2020-02-17 19:10:20',NULL,'2020-02-17 19:10:20'),(11,'0733739021021','Plant Protein Complex','Now Sports','https://static.openfoodfacts.org/images/products/073/373/902/1021/front_en.4.200.jpg','2020-02-17 19:12:09',NULL,NULL,'2020-02-17 19:12:09');
 /*!40000 ALTER TABLE `scanned_item` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -62,4 +63,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-02-17 17:28:13
+-- Dump completed on 2020-02-17 19:12:36

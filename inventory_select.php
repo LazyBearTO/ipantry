@@ -2,7 +2,7 @@
 include_once 'db/conn.php';
 include_once 'db/dao.php';
 
-$sql = "SELECT  * FROM ipantry.scanned_item GROUP BY scanned_txt ORDER BY stock_datetime DESC";
+$sql = "SELECT  * FROM ipantry.scanned_item GROUP BY scanned_txt ORDER BY lastop_datetime DESC";
 $result = mysqli_query($connect, $sql);
 
 $count_total = get_total_count();
@@ -30,7 +30,7 @@ if (mysqli_num_rows($result) > 0) {
                     <div>' . $row["scanned_txt"] . '</div>
                     <div>' . $row["product_name"] . '</div>
                     <div>' . $row["brand_name"] . '</div>
-                    <div>' . $row["stock_datetime"] . '</div>
+                    <div>' . $row["lastop_datetime"] . '</div>
                     <div><font color=blue>' . $count["undecided"] . '</font>/<font color=green>' . $count["left"] . '</font></div>
                      <div>
                          <font color=red>' . $count["trashed"] . "</font>/<font color=green>" . $count["stocked"] . "</font>/<font color=blue>" . $count["scanned"]  . '</font>

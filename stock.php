@@ -28,15 +28,15 @@ $id  = $_POST["id"];
 //                 '" . $image_thumb_url . "',
 //                 now()
 //                 )";
-// echo $sql;
+//echo $sql;
 // exit();
 // if (mysqli_query($connect, $sql)) {
 //     echo $sql . "\n";
 // }
 // //update scanned_item
-$sql = "UPDATE scanned_item SET stock_datetime = NOW() WHERE (id=$id)";
+$sql = "UPDATE scanned_item SET stock_datetime = NOW(), lastop_datetime = NOW() WHERE (id=$id)";
 if (mysqli_query($connect, $sql)) {
     echo $sql . "\n";
 }
-// echo $sql . "\n";
+//echo $sql . "\n";
 // exit();

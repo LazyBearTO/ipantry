@@ -2,7 +2,7 @@
 include_once 'db/conn.php';
 include_once 'util.php';
 $output = '';
-$sql = "SELECT * FROM scanned_item ORDER BY id DESC";
+$sql = "SELECT * FROM scanned_item ORDER BY scanned_datetime DESC, stock_datetime ASC";
 $result = mysqli_query($connect, $sql);
 $output .= '  
             <div class="table-boarderless">
