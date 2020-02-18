@@ -113,6 +113,8 @@
                 });
             }
         });
+
+        //stock button click
         $(document).on('click', '.btn_stock', function() {
             var id = $(this).data("id9"); {
                 $.ajax({
@@ -130,6 +132,8 @@
             }
         });
 
+
+        //keyboard enter pressed
         $('#scanned_txt').keypress(function(event) {
             var keycode = (event.keyCode ? event.keyCode : event.which);
             if (keycode == '13') {
@@ -147,7 +151,7 @@
                     },
                     dataType: "text",
                     success: function(data) {
-                        //alert(data);  
+                        //alert(data);
                         fetch_data();
                     }
                 })
@@ -160,11 +164,9 @@
                 //console.log("vali:" + $('#scanned_txt.form-control')[0].value)
                 //document.getElementById("scanned_txt").focus(); 
             }
-
             event.stopPropagation();
         });
-
-
+        //reset database
         $(document).on('click', '#btn_reset', function() {
 
             if (confirm("Reset?")) {
