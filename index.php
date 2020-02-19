@@ -16,12 +16,12 @@
             <h3 align="center">
                 <a href="."><button type="button" class="btn btn-primary btn-lg active">Home</button></a>
                 <a href="dbr.html"><button type="button" class="btn btn-success btn-lg inactive">Scan</button></a>
-                <button id="btn_reset" type="button" class="btn btn-warning btn-lg inactive">reset</button>
+                <button id="btn_reset" type="button" class="btn btn-warning btn-lg inactive">Reset</button>
             </h3>
 
-            <input id="scanned_txt" type="text" class="form-control" placeholder="enter barcode here then press enter" value="063348006936" />
+            <input id="scanned_txt" type="text" class="form-control" placeholder="enter barcode here then press enter" style="display:table-column;width:80%" value="063348006936" />
 
-            <!-- <button type="submit" name="btn_add" id="btn_add" class="btn btn-s btn-primary">Scan</button> -->
+            <button type="submit" name="btn_add" id="btn_add" class="btn btn-s btn-primary">Enter</button>
 
             <div id="live_data"></div>
         </div>
@@ -56,10 +56,12 @@
                 },
                 dataType: "text",
                 success: function(data) {
-                    alert(data);
+                    //alert(data);
                     fetch_data();
                 }
             })
+            $('#scanned_txt.form-control')[0].value = '';
+
         });
 
         function edit_data(id, text, column_name) {

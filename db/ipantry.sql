@@ -41,7 +41,7 @@ CREATE TABLE `scanned_item` (
   `trash_datetime` datetime DEFAULT NULL,
   `lastop_datetime` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -50,7 +50,6 @@ CREATE TABLE `scanned_item` (
 
 LOCK TABLES `scanned_item` WRITE;
 /*!40000 ALTER TABLE `scanned_item` DISABLE KEYS */;
-INSERT INTO `scanned_item` VALUES (1,'0058496447588','Bistro express à la mexicaine','uncle ben\'s','https://static.openfoodfacts.org/images/products/005/849/644/7588/front_en.25.200.jpg','2020-02-19 08:11:03',NULL,NULL,'2020-02-19 08:11:03'),(2,'0058496447588','Bistro express à la mexicaine','uncle ben\'s','https://static.openfoodfacts.org/images/products/005/849/644/7588/front_en.25.200.jpg','2020-02-19 08:11:04',NULL,NULL,'2020-02-19 08:11:04'),(3,'0058496447588','Bistro express à la mexicaine','uncle ben\'s','https://static.openfoodfacts.org/images/products/005/849/644/7588/front_en.25.200.jpg','2020-02-19 08:11:05',NULL,NULL,'2020-02-19 08:11:05'),(4,'0058496447588','Bistro express à la mexicaine','uncle ben\'s','https://static.openfoodfacts.org/images/products/005/849/644/7588/front_en.25.200.jpg','2020-02-19 08:11:05',NULL,NULL,'2020-02-19 08:11:05'),(5,'063348006936','Pattes d\'ours','Dare','https://static.openfoodfacts.org/images/products/006/334/800/6936/front_fr.4.200.jpg','2020-02-19 08:11:10',NULL,NULL,'2020-02-19 08:11:10'),(6,'063348006936','Pattes d\'ours','Dare','https://static.openfoodfacts.org/images/products/006/334/800/6936/front_fr.4.200.jpg','2020-02-19 08:11:11',NULL,NULL,'2020-02-19 08:11:11'),(7,'063348006936','Pattes d\'ours','Dare','https://static.openfoodfacts.org/images/products/006/334/800/6936/front_fr.4.200.jpg','2020-02-19 08:11:12',NULL,NULL,'2020-02-19 08:11:12');
 /*!40000 ALTER TABLE `scanned_item` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -63,4 +62,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-02-19  8:11:21
+-- Dump completed on 2020-02-19 18:01:17
