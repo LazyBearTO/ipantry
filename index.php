@@ -14,14 +14,15 @@
     <div class="container">
         <div class="table-borderless">
             <h3 align="center">
-                <a href="."><button type="button" class="btn btn-primary btn-lg active">Scan</button></a>
-                <a href="inventory.php"><button type="button" class="btn btn-success btn-lg inactive">Pantry</button></a>
+                <a href="."><button type="button" class="btn btn-primary btn-lg active">Home</button></a>
+                <a href="dbr.html"><button type="button" class="btn btn-success btn-lg inactive">Scan</button></a>
                 <button id="btn_reset" type="button" class="btn btn-warning btn-lg inactive">reset</button>
             </h3>
-            <h4>
-                <input id="scanned_txt" type="text" class="form-control" placeholder="enter barcode here then press enter" />
-                <!-- <button type="submit" name="btn_add" id="btn_add" class="btn btn-s btn-primary">Scan</button> -->
-            </h4>
+
+            <input id="scanned_txt" type="text" class="form-control" placeholder="enter barcode here then press enter" value="063348006936" />
+
+            <!-- <button type="submit" name="btn_add" id="btn_add" class="btn btn-s btn-primary">Scan</button> -->
+
             <div id="live_data"></div>
         </div>
     </div>
@@ -97,13 +98,13 @@
             edit_data(id, image_thumb_url, "image_thumb_url");
         });
         $(document).on('click', '.btn_delete', function() {
-            var id = $(this).data("id6");
+            var scanned_txt = $(this).data("id6");
             if (confirm("Are you sure you want to delete this?")) {
                 $.ajax({
                     url: "delete.php",
                     method: "POST",
                     data: {
-                        id: id
+                        scanned_txt: scanned_txt
                     },
                     dataType: "text",
                     success: function(data) {
@@ -116,12 +117,13 @@
 
         //stock button click
         $(document).on('click', '.btn_stock', function() {
-            var id = $(this).data("id9"); {
+            var scanned_txt = $(this).data("id9"); {
                 $.ajax({
-                    url: "stock.php",
+                    url: "insert.php",
                     method: "POST",
                     data: {
-                        id: id
+                        scanned_txt: scanned_txt,
+                        action: 'stock'
                     },
                     dataType: "text",
                     success: function(data) {
@@ -143,6 +145,8 @@
                     alert("Enter barcode");
                     return false;
                 }
+
+                //window.location = 'insert.php?q=' + scanned_txt;
                 $.ajax({
                     url: "insert.php",
                     method: "POST",
@@ -155,14 +159,19 @@
                         fetch_data();
                     }
                 })
+
                 //$('#scanned_txt').autofocus();
                 //input_scanned_txt[0].value = "";
                 //input_scanned_txt[0].autofocus = 1;
                 //('#scanned_txt').value = "22";
-                $('#scanned_txt.form-control')[0].value = '';
                 //console.log(input_scanned_txt);
                 //console.log("vali:" + $('#scanned_txt.form-control')[0].value)
                 //document.getElementById("scanned_txt").focus(); 
+
+
+                //clear the input
+                $('#scanned_txt.form-control')[0].value = '';
+
             }
             event.stopPropagation();
         });

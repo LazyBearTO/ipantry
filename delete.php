@@ -1,15 +1,21 @@
 <?php
 include_once 'db/conn.php';
+include_once 'db/dao.php';
 
+$scanned_txt = $_POST["scanned_txt"];
 $id = $_POST["id"];
+
+
+trash_item_into_db($scanned_txt);
+
 
 //$sql = "DELETE FROM scanned_item WHERE id = '".$_POST["id"]."'";
 
-$sql = "UPDATE scanned_item SET trash_datetime = NOW() WHERE (id=$id)";
+// $sql = "UPDATE scanned_item SET trash_datetime = NOW() WHERE (id=$id)";
 
-if (mysqli_query($connect, $sql)) {
-      echo $sql . "\n";
-}
+// if (mysqli_query($connect, $sql)) {
+//       echo $sql . "\n";
+// }
 
 // $sql = "UPDATE inventory_item SET trash_datetime = NOW() WHERE (scanned_id=$id)";
 // echo $sql . "\n";

@@ -121,3 +121,86 @@ function db_array_to_scanned_item(array $arry_product)
 
 // echo "<hr />ss<br />";
 //print_r(lookup_db("6111035000058"));
+function scan_item_into_db($scanned_txt)
+{
+    $connect = mysqli_connect("localhost", "ipantry", "ipantry", "ipantry");
+    $scanned_item = lookup_remote_db($scanned_txt);
+    if ($scanned_item) {
+        $product_name = mysqli_real_escape_string($connect, $scanned_item['product_name']);
+        $brand_name = mysqli_real_escape_string($connect, $scanned_item['brand_name']);
+        $image_thumb_url = mysqli_real_escape_string($connect, $scanned_item['image_thumb_url']);
+        $sql = "INSERT INTO scanned_item(scanned_txt, product_name, brand_name, image_thumb_url, scanned_datetime, lastop_datetime) 
+        VALUES('" . $scanned_txt . "',
+               '" . $product_name . "',
+               '" . $brand_name . "',
+               '" . $image_thumb_url . "',
+               NOW(),NOW()
+               )";
+    } else {
+        // no found, just insert barcode, no other info
+        $sql = "INSERT INTO scanned_item(scanned_txt, scanned_datetime, lastop_datetime) 
+        VALUES('" . $scanned_txt . "', NOW(), NOW())";
+    }
+    echo $sql;
+    // exit();
+    if (mysqli_query($connect, $sql)) {
+        echo $sql;
+    }
+}
+
+function stock_item_into_db($scanned_txt)
+{
+    $connect = mysqli_connect("localhost", "ipantry", "ipantry", "ipantry");
+    $scanned_item = lookup_remote_db($scanned_txt);
+    if ($scanned_item) {
+        $product_name = mysqli_real_escape_string($connect, $scanned_item['product_name']);
+        $brand_name = mysqli_real_escape_string($connect, $scanned_item['brand_name']);
+        $image_thumb_url = mysqli_real_escape_string($connect, $scanned_item['image_thumb_url']);
+        $sql = "INSERT INTO scanned_item(scanned_txt, product_name, brand_name, image_thumb_url, stock_datetime, lastop_datetime) 
+        VALUES('" . $scanned_txt . "',
+               '" . $product_name . "',
+               '" . $brand_name . "',
+               '" . $image_thumb_url . "',
+               NOW(),
+               NOW()
+               )";
+    } else {
+        // no found, just insert barcode, no other info
+        $sql = "INSERT INTO scanned_item(scanned_txt, stock_datetime, lastop_datetime) 
+        VALUES('" . $scanned_txt . "', NOW(), NOW())";
+    }
+    // echo $sql;
+    // exit();
+    if (mysqli_query($connect, $sql)) {
+        echo $sql;
+    }
+}
+
+
+function trash_item_into_db($scanned_txt)
+{
+    $connect = mysqli_connect("localhost", "ipantry", "ipantry", "ipantry");
+    $scanned_item = lookup_remote_db($scanned_txt);
+    if ($scanned_item) {
+        $product_name = mysqli_real_escape_string($connect, $scanned_item['product_name']);
+        $brand_name = mysqli_real_escape_string($connect, $scanned_item['brand_name']);
+        $image_thumb_url = mysqli_real_escape_string($connect, $scanned_item['image_thumb_url']);
+        $sql = "INSERT INTO scanned_item(scanned_txt, product_name, brand_name, image_thumb_url, trash_datetime, lastop_datetime) 
+        VALUES('" . $scanned_txt . "',
+               '" . $product_name . "',
+               '" . $brand_name . "',
+               '" . $image_thumb_url . "',
+               NOW(),
+               NOW()
+               )";
+    } else {
+        // no found, just insert barcode, no other info
+        $sql = "INSERT INTO scanned_item(scanned_txt, trash_datetime, lastop_datetime) 
+        VALUES('" . $scanned_txt . "', NOW(), NOW())";
+    }
+    // echo $sql;
+    // exit();
+    if (mysqli_query($connect, $sql)) {
+        echo $sql;
+    }
+}

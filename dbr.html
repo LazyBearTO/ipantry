@@ -57,13 +57,19 @@
                     }
                 };
                 scanner.onUnduplicatedRead = (txt, result) => {
-                    alert(result.barcodeFormatString + ':: ' + txt);
+                    alert(result.barcodeFormatString + ': ' + txt);
                     var xmlhttp = new XMLHttpRequest();
-                    xmlhttp.open("GET", "../insert.php?q=" + txt, true);
+                    xmlhttp.open("GET", "insert.php?q=" + txt, true);
                     xmlhttp.send();
-
+                    //window.location.assign("index.php");
+                    xmlhttp.onload = function() {
+                        if (xmlhttp.status == 200) {
+                            window.location = 'index.php';
+                        }
+                    };
                 };
                 await scanner.show();
+
             } catch (ex) {
                 alert(ex.message);
                 throw ex;

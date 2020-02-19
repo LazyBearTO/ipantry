@@ -2,7 +2,7 @@
 include_once 'db/conn.php';
 include_once 'db/dao.php';
 
-$sql = "SELECT  * FROM ipantry.scanned_item GROUP BY scanned_txt ORDER BY lastop_datetime DESC";
+$sql = "SELECT * FROM scanned_item GROUP BY scanned_txt ORDER BY lastop_datetime DESC";
 $result = mysqli_query($connect, $sql);
 
 $count_total = get_total_count();
@@ -21,20 +21,29 @@ $output .= '
 if (mysqli_num_rows($result) > 0) {
      //print_r($result);
      while ($row = mysqli_fetch_array($result)) {
+
           $count = get_count($row["scanned_txt"]);
+
+          if ($row["lastop_datetime"] = $row["stock_datetime"])
+               $color = "#5cb85c";
+          elseif ($row["lastop_datetime"] = $row["trash_datetime"])
+               $color = "#c9302c";
+          elseif ($row["lastop_datetime"] = $row["scanned_datetime"])
+               $color = "#286090";
           $output .= '  
                 <tr>  
-                    <td><img src=' . $row["image_thumb_url"] . ' class="img-fluid img-thumbnail"></img>            
+                    <td><img src=' . $row["image_thumb_url"] . ' class="img-fluid img-thumbnail"></img>
+                    <div><font color=blue>' . $count["undecided"] . '</font>/<font color=green>' . $count["left"] . '</font>
+                        <font color=red>' . $count["trashed"] . "</font>/<font color=green>" . $count["stocked"] . "</font>/<font color=blue>" . $count["scanned"]  . '</font>
+                   </div>           
                     </td>      
                     <td>
                     <div>' . $row["scanned_txt"] . '</div>
                     <div>' . $row["product_name"] . '</div>
                     <div>' . $row["brand_name"] . '</div>
-                    <div>' . $row["lastop_datetime"] . '</div>
-                    <div><font color=blue>' . $count["undecided"] . '</font>/<font color=green>' . $count["left"] . '</font></div>
-                     <div>
-                         <font color=red>' . $count["trashed"] . "</font>/<font color=green>" . $count["stocked"] . "</font>/<font color=blue>" . $count["scanned"]  . '</font>
-                    </div>
+                    <div class="lastop_datetime" style="color:' . $color . ';">';
+          $output .= $row["lastop_datetime"] . '</div>
+                
                     </td>           
                 </tr>  
            ';

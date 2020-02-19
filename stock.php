@@ -34,9 +34,9 @@ $id  = $_POST["id"];
 //     echo $sql . "\n";
 // }
 // //update scanned_item
-$sql = "UPDATE scanned_item SET stock_datetime = NOW(), lastop_datetime = NOW() WHERE (id=$id)";
-if (mysqli_query($connect, $sql)) {
-    echo $sql . "\n";
-}
+// $sql = "UPDATE scanned_item SET stock_datetime = NOW(), lastop_datetime = NOW() WHERE (id=$id)";
+// if (mysqli_query($connect, $sql)) {
+//     echo $sql . "\n";
+// }
 //echo $sql . "\n";
 // exit();
