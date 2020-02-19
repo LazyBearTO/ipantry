@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">ll
 </head>
 
 <body>
@@ -21,6 +21,7 @@
 
         // reader for decoding picture
         let reader = null;
+
         // scanner for decoding video
         let scanner = null;
 
@@ -56,7 +57,12 @@
                     }
                 };
                 scanner.onUnduplicatedRead = (txt, result) => {
-                    alert(result.barcodeFormatString + ': ' + txt);
+                    alert(result.barcodeFormatString + ':: ' + txt);
+
+                    var xmlhttp = new XMLHttpRequest();
+                    xmlhttp.open("GET", "dbr.php?q=" + txt, true);
+                    xmlhttp.send();
+
                 };
                 await scanner.show();
             } catch (ex) {

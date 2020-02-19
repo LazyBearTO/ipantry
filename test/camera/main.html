@@ -1,56 +1,17 @@
 <!DOCTYPE html>
-
-<!--
-Copyright 2017 Google Inc.
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
--->
-
 <html lang="en">
 
 <head>
-
 
     <meta charset="utf-8">
     <meta name="description" content="Simplest possible examples of HTML, CSS and JavaScript.">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta itemprop="name" content="simpl.info: simplest possible examples of HTML, CSS and JavaScript">
-
     <meta id="theme-color" name="theme-color" content="#fff">
-
-    <link rel="icon" href="">
-
-    <base target=" _blank">
-
-
     <title>mediaDevices.enumerateDevices()</title>
 
     <link rel="stylesheet" href="main.css">
-
-    <style>
-        h1 {
-            margin: 0 0 24px 0;
-        }
-        
-        select {
-            width: 150px;
-        }
-        
-        video {
-            margin: 10px 0 0 0;
-        }
-    </style>
 
 </head>
 
@@ -58,7 +19,6 @@ limitations under the License.
 
     <div id="container">
 
-        <h1><a href="." title="simpl.info home page">simpl.info</a> mediaDevices.<wbr>enumerateDevices()</h1>
 
         <div class="select">
             <label for="audioSource">Audio source: </label><select id="audioSource"></select>
@@ -70,12 +30,83 @@ limitations under the License.
 
         <video autoplay muted playsinline></video>
 
+        <img id="image" src="">
+
+        <canvas style="display:none;"></canvas>
+
+        <button id="captureVideoButton">Stop video</button>
+
+        <button id="screenshot-button">Take screenshot</button>
+
         <script async src="main.js"></script>
 
 
     </div>
 
+    <script type="text/javascript">
+        const captureVideoButton = document.querySelector('#captureVideoButton');
+        const screenshotButton = document.querySelector('#screenshot-button');
+        //console.log(captureVideoButton);
+        const img = document.querySelector('#image');
+        //console.log(img);
+        const video = document.querySelector('video');
+        //console.log(video);
+        const canvas = document.createElement('canvas');
+        //console.log(canvas);
+        captureVideoButton.onclick = function() {
+            //navigator.mediaDevices.getUserMedia(constraints).then(handleSuccess).catch(handleError);
+            // video.srcObject.stream.Stop();
+            stream.getTracks().forEach(function(track) {
+                track.stop();
+            })
+        };
+        screenshotButton.onclick = video.onclick = function() {
 
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            canvas.getContext('2d').drawImage(video, 0, 0);
+            // Other browsers will fall back to image/png 
+            img.src = canvas.toDataURL('image/webp');
+            //console.log(img.src);
+            //blob = img.src;
+            //save to ajax
+            var blob = dataURItoBlob(img.src);
+            var fd = new FormData(document.forms[0]);
+            var xhr = new XMLHttpRequest();
+            console.log(blob);
+            fd.append("myFile", blob);
+            xhr.open('POST', 'save.php', true);
+            xhr.send(fd);
+
+        };
+
+        function handleSuccess(stream) {
+            screenshotButton.disabled = false;
+            video.srcObject = stream;
+        }
+
+        function dataURItoBlob(dataURI) {
+            // convert base64/URLEncoded data component to raw binary data held in a string
+            var byteString;
+            if (dataURI.split(',')[0].indexOf('base64') >= 0)
+                byteString = atob(dataURI.split(',')[1]);
+            else
+                byteString = unescape(dataURI.split(',')[1]);
+
+            // separate out the mime component
+            var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+
+            // write the bytes of the string to a typed array
+            var ia = new Uint8Array(byteString.length);
+            for (var i = 0; i < byteString.length; i++) {
+                ia[i] = byteString.charCodeAt(i);
+            }
+
+            return new Blob([ia], {
+                type: mimeString
+            });
+        }
+    </script>
 </body>
 
 </html>
