@@ -1,4 +1,7 @@
 # ipantry
+
+https://youtu.be/cfZdNDRAFEo DEMO
+
 scan barcode of food package to display info(barcode reader + raspberry pi)
 
 1.scan.py
