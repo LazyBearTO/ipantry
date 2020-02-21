@@ -8,8 +8,7 @@ a.scan item
 
 b.lookup barcode from openfoodfacts.org
 
-c.insert into mysql ipantry.scanned_item
+c.insert into database
 
-d.let use decide to stock or trash
+d.let user to decide to stock or trash
 
-Ajax+Jquery+php+mysql + https://www.webslesson.info/2016/02/live-table-add-edit-delete-using-ajax-jquery-in-php-mysql.html
