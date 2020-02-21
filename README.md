@@ -1,6 +1,6 @@
 # ipantry v.99
 
-scan barcode of food package to display info(barcode reader + raspberry pi)
+scan barcode of food package to manage the stock
 
 https://youtu.be/cfZdNDRAFEo DEMO
 
