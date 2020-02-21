@@ -1,6 +1,6 @@
 # ipantry v.99
 
-scan barcode of food package to manage the stock
+scan barcode of food package to track the pantry inventory
 
 https://youtu.be/cfZdNDRAFEo DEMO
 
