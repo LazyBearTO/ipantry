@@ -51,17 +51,12 @@ if (mysqli_num_rows($result) > 0) {
                         <div class="product_name" data-id2="' . $row["id"] . '" contenteditable>' . $row["product_name"] . '</div>
                         <div class="brand_name" data-id3="' . $row["id"] . '" contenteditable>' . $row["brand_name"] . '</div>  
                   ';
-        //if ($count["undecided"] > 0) {
-        // if (($row["trash_datetime"] == NULL) and ($row["stock_datetime"] == NULL)) {
-        $output .= '<button ';
-        if (($undecided < 1) or ($left < 1))
-            $output .= 'class="invisible" ';
-        $output .= 'type="button" name="delete_btn" data-id6="' . $row["scanned_txt"] . '" class="btn btn-s btn-danger btn_delete" >Trash</button>';
-        $output .= '   ';
-        $output .= '<button ';
-        if ($count["undecided"] < 1)
-            $output .= 'class="invisible" ';
-        $output .= 'type="button" name="stock_btn" data-id9="' . $row["scanned_txt"] . '" class="btn btn-s btn-success btn_stock" >Stock</button>';
+        if ($undecided > 0)
+            $output .= '<button type="button" name="stock_btn" data-id9="' . $row["scanned_txt"] . '" class="btn btn-s btn-success btn_stock" >Stock</button>';
+
+        if ($undecided > 0 and $left)
+            $output .= '<button type="button" name="delete_btn" data-id6="' . $row["scanned_txt"] . '" class="btn btn-s btn-danger btn_delete" >Trash</button>';
+
         $output .= ' </td>
                
             </tr>  
