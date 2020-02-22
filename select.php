@@ -2,7 +2,14 @@
 include_once 'db/conn.php';
 include_once 'db/dao.php';
 
-$sql = "SELECT * FROM scanned_item GROUP BY scanned_txt ORDER BY lastop_datetime DESC";
+//$sql = "SELECT * FROM scanned_item GROUP BY scanned_txt ORDER BY lastop_datetime DESC";
+$sql = "select *
+from (select p.*,
+             row_number() over (partition by scanned_txt order by lastop_datetime desc) as seqnum
+      from scanned_item p
+     ) t
+where seqnum = 1
+order by lastop_datetime desc";
 $result = mysqli_query($connect, $sql);
 
 $count_total = get_total_count();
