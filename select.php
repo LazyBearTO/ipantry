@@ -47,7 +47,7 @@ if (mysqli_num_rows($result) > 0) {
                         </a>
                     </td>
                     <td>
-                        <div class="scanned_txt" data-id1="' . $row["id"] . '" contenteditable>' . $row["scanned_txt"] . '</div>
+                        <div class="scanned_txt" data-id1="' . $row["id"] . '">' . $row["scanned_txt"] . '</div>
                         <div class="product_name" data-id2="' . $row["id"] . '" contenteditable>' . $row["product_name"] . '</div>
                         <div class="brand_name" data-id3="' . $row["id"] . '" contenteditable>' . $row["brand_name"] . '</div>  
                   ';
