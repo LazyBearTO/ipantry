@@ -1,0 +1,30 @@
+.notification {
+  text-decoration: none;
+  padding: 5px;
+  position: relative;
+  display: inline-block;
+  border-radius: 2px;
+}
+
+.notification:hover {
+  background: red;
+}
+
+.notification .badge_right {
+  position: absolute;
+  top: 5px;
+  right: 0px;
+  padding: 5px 10px;
+  border-radius: 50%;
+  background: red;
+  color: white;
+}
+.notification .badge_left {
+  position: absolute;
+  left: 0px;
+  top: 5px;
+  padding: 5px 10px;
+  border-radius: 50%;
+  background: #5cb85c;
+  color: white;
+}
