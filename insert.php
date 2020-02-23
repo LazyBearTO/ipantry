@@ -10,12 +10,6 @@ if ($_POST["scanned_txt"]) {
 }
 
 
-//serach remote database
-
-// print_r($scanned_item);
-// var_dump($scanned_item);
-// exit();
-
 //if found online, get info from online
 if ($_POST["action"]) {
      $scanned_txt = mysqli_real_escape_string($connect, $_POST["scanned_txt"]);

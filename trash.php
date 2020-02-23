@@ -2,9 +2,8 @@
 include_once 'db/conn.php';
 include_once 'db/dao.php';
 
-$scanned_txt = $_POST["scanned_txt"];
-$id = $_POST["id"];
-
+if ($_POST["scanned_txt"])
+    $scanned_txt = $_POST["scanned_txt"];
 
 trash_item_into_db($scanned_txt);
 

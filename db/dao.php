@@ -1,5 +1,4 @@
 <?php
-//include_once 'db/conn.php';
 
 function get_total_count()
 {
@@ -57,12 +56,14 @@ function get_count(string $str_barcode)
 
 function lookup_local_db(string $str_barcode)
 {
+
     $connect = mysqli_connect("localhost", "ipantry", "ipantry", "ipantry");
-    $sql = "SELECT * FROM inventory_item WHERE(sanned_txt=.$str_barcode.)";
-    if (mysqli_query($connect, $sql)) {
+    $sql = "SELECT * FROM scanned_item WHERE(scanned_txt='$str_barcode')";
+    $result = mysqli_query($connect, $sql);
+    if ($mysqli_num_rows($result))
         echo $sql . "\n";
-    }
-    return False;
+
+    return $result;
 }
 
 function lookup_remote_db(string $str_barcode)
@@ -141,7 +142,7 @@ function scan_item_into_db($scanned_txt)
         $sql = "INSERT INTO scanned_item(scanned_txt, scanned_datetime, lastop_datetime) 
         VALUES('" . $scanned_txt . "', NOW(), NOW())";
     }
-    echo $sql;
+    //echo $sql;
     // exit();
     if (mysqli_query($connect, $sql)) {
         echo $sql;

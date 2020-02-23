@@ -51,11 +51,11 @@ if (mysqli_num_rows($result) > 0) {
                         <div class="product_name" data-id2="' . $row["id"] . '" contenteditable>' . $row["product_name"] . '</div>
                         <div class="brand_name" data-id3="' . $row["id"] . '" contenteditable>' . $row["brand_name"] . '</div>  
                   ';
+        //stock btn
         if ($undecided > 0)
-            $output .= '<button type="button" name="stock_btn" data-id9="' . $row["scanned_txt"] . '" class="btn btn-s btn-success btn_stock" >Stock</button>';
-
+            $output .= '<button type="button" name="stock_btn" data-id9="' . $row["scanned_txt"] . '" class="btn btn-s btn-success btn_stock inactive" >Stock</button>';
         if ($undecided > 0 and $left)
-            $output .= '<button type="button" name="delete_btn" data-id6="' . $row["scanned_txt"] . '" class="btn btn-s btn-danger btn_delete" >Trash</button>';
+            $output .= '<button type="button" name="delete_btn" data-id6="' . $row["scanned_txt"] . '" class="btn btn-s btn-warning btn_delete inactive" >Trash</button>';
 
         $output .= ' </td>
                
