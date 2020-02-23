@@ -11,7 +11,7 @@ if ($_POST["scanned_txt"]) {
 
 
 //if found online, get info from online
-if ($_POST["action"]) {
+if ($_POST["action"] == "stock") {
      $scanned_txt = mysqli_real_escape_string($connect, $_POST["scanned_txt"]);
      stock_item_into_db($scanned_txt);
 } else {

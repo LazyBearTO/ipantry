@@ -3,6 +3,7 @@ html>
 <head>
     <title>iPantry v0.99</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="css/styles.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
@@ -12,12 +13,11 @@ html>
 
 <body>
 
-    <input id="ipt-file" type="file">
-
-    <button id="btn-show-scanner">show scanner</button>
+    <a href="/"><button id="btn_reset" type="button" class="btn btn-success btn-lg inactive">Home</button></a>
 
     <!-- Please visit https://www.dynamsoft.com/CustomerPortal/Portal/TrialLicense.aspx to get a trial license. -->
-    <script src="https://cdn.jsdelivr.net/npm/dynamsoft-javascript-barcode@7.3.0-v2/dist/dbr.js" data-productKeys="t0068NQAAAIy1rO7FS1QqSPr3kTf5H0+oh6r88J3V2u9zxxuME5mWbByr4W0fk4/FdaRuEki3CMzoiQ3A+Eqm0q1MfG5FIOY="></script>
+    <script src="https://cdn.jsdelivr.net/npm/dynamsoft-javascript-barcode@7.3.0-v2/dist/dbr.js"
+        data-productKeys="t0068NQAAAIy1rO7FS1QqSPr3kTf5H0+oh6r88J3V2u9zxxuME5mWbByr4W0fk4/FdaRuEki3CMzoiQ3A+Eqm0q1MfG5FIOY="></script>
 
     <script>
         Dynamsoft.BarcodeReader._bUseFullFeature = true; // Control of loading min wasm or full wasm.
@@ -25,63 +25,32 @@ html>
         // scanner for decoding video
         let scanner = null;
 
-        // decode input picture
-        document.getElementById('ipt-file').addEventListener('change', async function() {
-            try {
-                reader = reader || await Dynamsoft.BarcodeReader.createInstance();
-                let resultsToAlert = [];
-                for (let i = 0; i < this.files.length; ++i) {
-                    let file = this.files[i];
-                    resultsToAlert.push(i + '. ' + file.name + ":");
-                    let results = await reader.decode(file);
-                    console.log(results);
-                    for (let result of results) {
-                        resultsToAlert.push(result.barcodeText);
-                    }
-                }
-                alert(resultsToAlert.join('\n'));
-            } catch (ex) {
-                alert(ex.message);
-                throw ex;
-            }
-            this.value = '';
-        });
-
         // decode video from camera
-        document.getElementById('btn-show-scanner').addEventListener('click', async() => {
-            try {
-                scanner = scanner || await Dynamsoft.BarcodeScanner.createInstance();
-                scanner.onFrameRead = results => {
-                    if (results.length) {
-                        console.log(results);
+
+        (async () => {
+            scanner = await Dynamsoft.BarcodeScanner.createInstance();
+            scanner.onFrameRead = results => {
+                console.log(results);
+            };
+            scanner.onUnduplicatedRead = (txt, result) => {
+                //alert(txt);
+                var xmlhttp = new XMLHttpRequest();
+                // xmlhttp.open("POST", "insert.php", true);
+                // xmlhttp.send("scanned_txt" + txt);
+
+                xmlhttp.open("GET", "insert.php?q=" + txt, true);
+                xmlhttp.send();
+
+                //redirect to index.html
+                xmlhttp.onload = function () {
+                    if (xmlhttp.status == 200) {
+                        window.location = '/';
                     }
                 };
-                scanner.onUnduplicatedRead = (txt, result) => {
-                    //alert(result.barcodeFormatString + ': ' + txt);
-                    //alert(txt);
-                    console.log("txt---" + txt);
-                    var xmlhttp = new XMLHttpRequest();
-                    // xmlhttp.open("POST", "insert.php", true);
-                    // xmlhttp.send("scanned_txt" + txt);
 
-                    xmlhttp.open("GET", "insert.php?q=" + txt, true);
-                    xmlhttp.send();
-
-                    xmlhttp.onload = function() {
-                        if (xmlhttp.status == 200) {
-                            window.location = 'index.html';
-                        }
-                    };
-                };
-                await scanner.show();
-
-            } catch (ex) {
-                alert(ex.message);
-                throw ex;
-            }
-        });
-
-        window.onload = document.getElementById('btn-show-scanner').click();
+            };
+            await scanner.show();
+        })();
     </script>
 </body>
 

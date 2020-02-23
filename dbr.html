@@ -3,55 +3,46 @@
 <head>
     <title>iPantry v1.00</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" href="css/styles.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
 
 </head>
 
 <body>
 
-    <button id="btn-show-scanner">show scanner</button>
+
 
     <!-- Please visit https://www.dynamsoft.com/CustomerPortal/Portal/TrialLicense.aspx to get a trial license. -->
-    <script src="https://cdn.jsdelivr.net/npm/dynamsoft-javascript-barcode@7.3.0-v2/dist/dbr.js" data-productKeys="t0068NQAAAIy1rO7FS1QqSPr3kTf5H0+oh6r88J3V2u9zxxuME5mWbByr4W0fk4/FdaRuEki3CMzoiQ3A+Eqm0q1MfG5FIOY="></script>
+    <script src="https://cdn.jsdelivr.net/npm/dynamsoft-javascript-barcode@7.3.0-v2/dist/dbr.js"
+        data-productKeys="t0068NQAAAIy1rO7FS1QqSPr3kTf5H0+oh6r88J3V2u9zxxuME5mWbByr4W0fk4/FdaRuEki3CMzoiQ3A+Eqm0q1MfG5FIOY="></script>
 
     <script>
         Dynamsoft.BarcodeReader._bUseFullFeature = true; // Control of loading min wasm or full wasm.
+        var x = 0;
 
-        // scanner for decoding video
-        let scanner = null;
 
-        // decode video from camera
-        document.getElementById('btn-show-scanner').addEventListener('click', async() => {
-            try {
-                scanner = scanner || await Dynamsoft.BarcodeScanner.createInstance();
+        if (x)
+            (async () => {
+                scanner = await Dynamsoft.BarcodeScanner.createInstance();
                 scanner.onFrameRead = results => {
-                    if (results.length) {
-                        //console.log(results);
-                    }
+                    console.log(results);
                 };
                 scanner.onUnduplicatedRead = (txt, result) => {
-                    //alert(result.barcodeFormatString + ': ' + txt);
+                    //alert(txt);
                     parent.postMessage(txt, "*")
-                        //var xmlhttp = new XMLHttpRequest();
-                        // xmlhttp.open("GET", "insert.php?q=" + txt, true);
-                        // xmlhttp.send();
-                        // //window.location.assign("index.php");
-                        // xmlhttp.onload = function() {
-                        //     if (xmlhttp.status == 200) {
-                        //         window.location = 'index.php';
-                        //     }
-                        // };
+
                 };
                 await scanner.show();
+            })();
 
-            } catch (ex) {
-                alert(ex.message);
-                throw ex;
-            }
-        });
+        //sent to index.html to start scanning
+        window.addEventListener("message", receiveMessage, false);
+
+        function receiveMessage(event) {
+            // if (event.origin !== "http://example.org:8080")
+            //     return;
+
+            // ...
+        }
     </script>
 </body>
 

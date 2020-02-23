@@ -54,16 +54,18 @@ function get_count(string $str_barcode)
 }
 
 
+//lookup local db, return top 1 result
 function lookup_local_db(string $str_barcode)
 {
-
     $connect = mysqli_connect("localhost", "ipantry", "ipantry", "ipantry");
-    $sql = "SELECT * FROM scanned_item WHERE(scanned_txt='$str_barcode')";
+    $sql = "SELECT * FROM scanned_item WHERE(scanned_txt='$str_barcode')  ORDER BY lastop_datetime DESC LIMIT 1";
     $result = mysqli_query($connect, $sql);
-    if ($mysqli_num_rows($result))
-        echo $sql . "\n";
 
-    return $result;
+    if ($row = mysqli_fetch_array($result))
+        //echo $sql . "<br />";
+        return $row;
+    else
+        return NULL;
 }
 
 function lookup_remote_db(string $str_barcode)
@@ -102,7 +104,7 @@ function lookup_remote_db(string $str_barcode)
         return db_array_to_scanned_item($result['product']);
     //return $result['product'];
 }
-
+//remote result_array to sanned_item
 function db_array_to_scanned_item(array $arry_product)
 {
     //print_r($arry_product);
@@ -152,7 +154,22 @@ function scan_item_into_db($scanned_txt)
 function stock_item_into_db($scanned_txt)
 {
     $connect = mysqli_connect("localhost", "ipantry", "ipantry", "ipantry");
-    $scanned_item = lookup_remote_db($scanned_txt);
+    //$scanned_item = lookup_local_db($scanned_txt);
+    if (lookup_local_db($scanned_txt)) {
+        echo "found local";
+        $scanned_item = lookup_local_db($scanned_txt);
+    } elseif (lookup_remote_db($scanned_txt)) {
+        echo "found remote ";
+        $scanned_item = lookup_remote_db($scanned_txt);
+    } else {
+        echo "no found neither local nor remote db";
+    }
+    //die();
+
+
+
+    //$scanned_item = lookup_remote_db($scanned_txt);
+
     if ($scanned_item) {
         $product_name = mysqli_real_escape_string($connect, $scanned_item['product_name']);
         $brand_name = mysqli_real_escape_string($connect, $scanned_item['brand_name']);
@@ -181,7 +198,21 @@ function stock_item_into_db($scanned_txt)
 function trash_item_into_db($scanned_txt)
 {
     $connect = mysqli_connect("localhost", "ipantry", "ipantry", "ipantry");
-    $scanned_item = lookup_remote_db($scanned_txt);
+
+
+    if (lookup_local_db($scanned_txt)) {
+        echo "found local";
+        $scanned_item = lookup_local_db($scanned_txt);
+    } elseif (lookup_remote_db($scanned_txt)) {
+        echo "found remote ";
+        $scanned_item = lookup_remote_db($scanned_txt);
+    } else {
+        echo "no found neither local nor remote db";
+    }
+    //die();
+
+
+    //$scanned_item = lookup_remote_db($scanned_txt);
     if ($scanned_item) {
         $product_name = mysqli_real_escape_string($connect, $scanned_item['product_name']);
         $brand_name = mysqli_real_escape_string($connect, $scanned_item['brand_name']);

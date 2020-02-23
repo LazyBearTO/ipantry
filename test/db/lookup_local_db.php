@@ -5,8 +5,9 @@ include_once '../../db/conn.php';
 include_once '../../db/dao.php';
 
 
-$scanned_txt = "063348006936";
+$scanned_txt = "8712100338694 ";
 //$scanned_item = lookup_remote_db($scanned_txt);
-$scanned_item = lookup_local_db($scanned_txt);
-var_dump($scanned_item);
-//print_r($scanned_item);
+//$scanned_item = lookup_local_db($scanned_txt);
+//var_dump($scanned_item);
+//print_r($scanned_item) . "<br />";
+stock_item_into_db($scanned_txt);

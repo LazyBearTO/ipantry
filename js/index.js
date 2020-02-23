@@ -149,7 +149,8 @@ $(document).ready(function() {
         }
         event.stopPropagation();
     });
-    //reset database
+
+    //reset btn click to reset database
     $(document).on('click', '#btn_reset', function() {
 
         if (confirm("Reset?")) {
@@ -157,13 +158,15 @@ $(document).ready(function() {
                 url: "reset.php",
                 method: "POST",
                 success: function(data) {
-                    alert(data);
+                    //alert(data);
                     fetch_data();
                 }
             })
         }
     });
 
+
+    //respond message send from the iframe:brd.html
     var eventMethod = window.addEventListener ?
         "addEventListener" :
         "attachEvent";
@@ -172,17 +175,17 @@ $(document).ready(function() {
         "onmessage" :
         "message";
 
+    //get message from brd.html
     eventer(messageEvent, function(e) {
 
         // if (e.origin !== 'http://the-trusted-iframe-origin.com') return;
-
-        // if (e.data)
-        //     alert(e.data);
         //alert(e.data);
         //console.log(e.data);
         $scanned_txt = e.data;
         // if ($scanned_txt)
         //     alert($scanned_txt);
+
+        //insert into database
         $.post("insert.php", {
                 scanned_txt: $scanned_txt,
             },
@@ -211,4 +214,12 @@ $(document).ready(function() {
         //fetch_data();
     });
 
+    //var x = document.getElementsByTagName("iframe")[0].contentWindow;
+    //x = window.frames[0];
+    //console.log(x);
+    // var y = yxdocument.getElementsByTagName("iframe")[0];
+    // console.log(y);
+    //x.document.getElementsByTagName("body")[0].style.backgroundColor = "blue";
+    // console.log("y:" + x.document.getElementsByTagName("body")[0]);
+    // this would turn the 1st iframe in document blue.
 });
