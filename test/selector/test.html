@@ -1,0 +1,59 @@
+<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+<link rel="icon" href="img/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="../../css/styles.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<div id="live_data">
+    <div class="table-boarderless">
+        <table class="table table-boarderless">
+
+            <tbody>
+                <tr>
+                    <td>
+                        <a href="#" class="notification">
+                            <img src="https://static.openfoodfacts.org/images/products/007/680/851/7989/front_en.3.200.jpg"
+                                class="img-fluid img-thumbnail"><span class="badge_right"> 1</span>
+                            <span class="badge_left">0</span>
+                        </a>
+                    </td>
+                    <td>
+                        <div class="scanned_txt" data-id1="3">0076808517989 </div>
+                        <div class="product_name" data-id2="3" contenteditable="">Medium Shells, Enriched Macaroni
+                            Product</div>
+                        <div class="brand_name" data-id3="3" contenteditable="">Barilla,Barilla America Inc.</div>
+                        <button type="button" name="stock_btn" data-id9="0076808517989 "
+                            class="btn btn-s btn-success btn_stock inactive">Stock</button>
+                    </td>
+
+                </tr>
+
+                <tr>
+                    <td>
+                        <a href="#" class="notification">
+                            <img src="https://static.openfoodfacts.org/images/products/006/334/800/6936/front_fr.4.200.jpg"
+                                class="img-fluid img-thumbnail"><span class="badge_right"> 2</span>
+                            <span class="badge_left">0</span>
+                        </a>
+                    </td>
+                    <td>
+                        <div class="scanned_txt" data-id1="2">063348006936</div>
+                        <div class="product_name" data-id2="2" contenteditable="">Pattes d'ours</div>
+                        <div class="brand_name" data-id3="2" contenteditable="">Dare</div>
+                        <button type="button" name="stock_btn" data-id9="063348006936"
+                            class="btn btn-s btn-success btn_stock inactive">Stock</button>
+                    </td>
+
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+
+    //$("#live_data > div > table").css("border", "3px solid red");
+    $("#live_data > div > table").removeClass("table");
+
+</script>

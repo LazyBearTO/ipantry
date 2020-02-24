@@ -127,7 +127,18 @@ function db_array_to_scanned_item(array $arry_product)
 function scan_item_into_db($scanned_txt)
 {
     $connect = mysqli_connect("localhost", "ipantry", "ipantry", "ipantry");
-    $scanned_item = lookup_remote_db($scanned_txt);
+    //$scanned_item = lookup_local_db($scanned_txt);
+    if (lookup_local_db($scanned_txt)) {
+        echo "found local";
+        $scanned_item = lookup_local_db($scanned_txt);
+    } elseif (lookup_remote_db($scanned_txt)) {
+        echo "found remote ";
+        $scanned_item = lookup_remote_db($scanned_txt);
+    } else {
+        echo "no found neither local nor remote db";
+    }
+    //die();
+
     if ($scanned_item) {
         $product_name = mysqli_real_escape_string($connect, $scanned_item['product_name']);
         $brand_name = mysqli_real_escape_string($connect, $scanned_item['brand_name']);

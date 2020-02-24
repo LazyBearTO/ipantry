@@ -8,10 +8,10 @@ $(document).ready(function() {
                 $('#live_data').html(data);
             }
         });
+        
     }
 
-    fetch_data();
-
+     //insert item
     $(document).on('click', '#btn_add', function() {
         var scanned_txt = $('#scanned_txt')[0].value;
         if (scanned_txt == '') {
@@ -33,7 +33,7 @@ $(document).ready(function() {
         $('#scanned_txt.form-control')[0].value = '';
 
     });
-
+    //edit tiem
     function edit_data(id, text, column_name) {
         $.ajax({
             url: "edit.php",
@@ -49,6 +49,7 @@ $(document).ready(function() {
             }
         });
     }
+    //edit scaned_txt
     $(document).on('blur', '.scanned_txt', function() {
         var id = $(this).data("id1");
         var scanned_txt = $(this).text();
@@ -108,8 +109,7 @@ $(document).ready(function() {
         }
     });
 
-
-    //keyboard enter pressed
+    //input keyboard enter pressed
     $('#scanned_txt').keypress(function(event) {
         var keycode = (event.keyCode ? event.keyCode : event.which);
         if (keycode == '13') {
@@ -150,7 +150,7 @@ $(document).ready(function() {
         event.stopPropagation();
     });
 
-    //reset btn click to reset database
+    //reset database
     $(document).on('click', '#btn_reset', function() {
 
         if (confirm("Reset?")) {
@@ -222,4 +222,14 @@ $(document).ready(function() {
     //x.document.getElementsByTagName("body")[0].style.backgroundColor = "blue";
     // console.log("y:" + x.document.getElementsByTagName("body")[0]);
     // this would turn the 1st iframe in document blue.
+
+
+    fetch_data();
+    //fix live_data table boarder
+
+    $("#live_data > div > table").removeClass("table");
+   
+
+
+    
 });

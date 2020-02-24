@@ -24,25 +24,31 @@
             (async () => {
                 scanner = await Dynamsoft.BarcodeScanner.createInstance();
                 scanner.onFrameRead = results => {
-                    console.log(results);
+                    //console.log(results);
                 };
                 scanner.onUnduplicatedRead = (txt, result) => {
+                    console.log(txt);
                     //alert(txt);
+                    //sent to parent frame
                     parent.postMessage(txt, "*")
 
                 };
                 await scanner.show();
             })();
 
-        //sent to index.html to start scanning
+
+        //listen from index.html to start scanning
         window.addEventListener("message", receiveMessage, false);
 
         function receiveMessage(event) {
             // if (event.origin !== "http://example.org:8080")
             //     return;
+            alert();
 
             // ...
         }
+
+
     </script>
 </body>
 
