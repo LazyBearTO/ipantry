@@ -1,16 +1,33 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-    <title>My Iframe</title>
-</head>
+
 
 <body>
 
-    <button>Botão</button>
+    <button>Send</button>
 
     <script type="text/javascript">
-        document.querySelector('button').onclick = function() {
+
+        var eventMethod = window.addEventListener ?
+            "addEventListener" :
+            "attachEvent";
+        var eventer = window[eventMethod];
+        var messageEvent = eventMethod === "attachEvent" ?
+            "onmessage" :
+            "message";
+
+        eventer(messageEvent, function (e) {
+
+            // if (e.origin !== 'http://the-trusted-iframe-origin.com') return;
+
+            if (e.data === "message" || e.message === "message")
+                alert('Message from index just came!');
+            console.log(e);
+        });
+
+
+        document.querySelector('button').onclick = function () {
             // parent.postMessage("message to be sent", "http://the-website-that-will-receive-the-msg.com")
             parent.postMessage("myevent", "*")
         };

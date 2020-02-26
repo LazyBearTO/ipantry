@@ -1,14 +1,15 @@
 <html>
 
 <head>
-    <title>iPantry v1.00</title>
+    <title>iPantry</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon">
 </head>
 
 <body>
-
+    <div id="div-video-container">
+        <video class=" dbrScanner-video" playsinline="true"></video>
+    </div>
 
 
     <!-- Please visit https://www.dynamsoft.com/CustomerPortal/Portal/TrialLicense.aspx to get a trial license. -->
@@ -16,37 +17,64 @@
         data-productKeys="t0068NQAAAIy1rO7FS1QqSPr3kTf5H0+oh6r88J3V2u9zxxuME5mWbByr4W0fk4/FdaRuEki3CMzoiQ3A+Eqm0q1MfG5FIOY="></script>
 
     <script>
+
         Dynamsoft.BarcodeReader._bUseFullFeature = true; // Control of loading min wasm or full wasm.
-        var x = 0;
 
+        (async () => {
 
-        if (x)
-            (async () => {
-                scanner = await Dynamsoft.BarcodeScanner.createInstance();
-                scanner.onFrameRead = results => {
-                    //console.log(results);
+            scanner = await Dynamsoft.BarcodeScanner.createInstance();
+            //await scanner.setUIElement(document.getElementById('div-video-container'));
+            //await scanner.setResolution(720, 640);
+            // scanner.onFrameRead = results => {
+            //     //console.log(results);
+            // };
+            scanner.onUnduplicatedRead = (txt, result) => {
+                // console.log(txt);
+                //alert(txt);
+                //sent to parent frame
+                parent.postMessage(txt, "*")
+
+            };//     return;
+
+            //listen from index.html to start scanning
+            var eventMethod = window.addEventListener ?
+                "addEventListener" :
+                "attachEvent";
+            var eventer = window[eventMethod];
+            var messageEvent = eventMethod === "attachEvent" ?
+                "onmessage" :
+                "message";
+
+            //await scanner.show();
+
+            eventer(messageEvent, function (e) {
+                // if (event.origin !== "http://example.org:8080")
+                //let scanner = null;
+
+                if (e.data === "message" || e.message === "message") {
+
+                    console.log("ckick");
+                    console.log(scanner.isOpen());
+
+                    if (scanner.isOpen()) {
+                        console.log("open->close");
+                        scanner.hide();
+                    } else {
+                        console.log("close->open ");
+                        scanner.show();
+                        document.querySelector('.dbrScanner-btn-close').onclick = function () {
+                            console.log(document.querySelector('.dbrScanner-btn-close'));
+                            //window.location = '/';
+                            //alert("close")
+                        }
+                    }
                 };
-                scanner.onUnduplicatedRead = (txt, result) => {
-                    console.log(txt);
-                    //alert(txt);
-                    //sent to parent frame
-                    parent.postMessage(txt, "*")
-
-                };
-                await scanner.show();
-            })();
+            })
 
 
-        //listen from index.html to start scanning
-        window.addEventListener("message", receiveMessage, false);
 
-        function receiveMessage(event) {
-            // if (event.origin !== "http://example.org:8080")
-            //     return;
-            alert();
+        })();
 
-            // ...
-        }
 
 
     </script>

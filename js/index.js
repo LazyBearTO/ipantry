@@ -10,6 +10,7 @@ $(document).ready(function() {
         });
         
     }
+    fetch_data();
 
      //insert item
     $(document).on('click', '#btn_add', function() {
@@ -166,7 +167,7 @@ $(document).ready(function() {
     });
 
 
-    //respond message send from the iframe:brd.html
+    //listen message  from the iframe
     var eventMethod = window.addEventListener ?
         "addEventListener" :
         "attachEvent";
@@ -182,8 +183,6 @@ $(document).ready(function() {
         //alert(e.data);
         //console.log(e.data);
         $scanned_txt = e.data;
-        // if ($scanned_txt)
-        //     alert($scanned_txt);
 
         //insert into database
         $.post("insert.php", {
@@ -193,42 +192,19 @@ $(document).ready(function() {
                 fetch_data();
                 //alert("Data: " + data + "\nStatus: " + status);
             });
-
-        // $.ajax({
-        //     url: "insert.php",
-        //     method: "POST",
-        //     data: {
-        //         scanned_txt: scanned_txt
-        //     },
-        //     dataType: "text",
-        //     success: function(data) {
-        //         //alert(data);
-        //         fetch_data();
-        //     }
-        // })
-
-        // var xmlhttp = new XMLHttpRequest();
-        // xmlhttp.open("GET", "insert.php?q=" + $scanned_txt, true);
-        // xmlhttp.send();
-
-        //fetch_data();
     });
 
-    //var x = document.getElementsByTagName("iframe")[0].contentWindow;
-    //x = window.frames[0];
-    //console.log(x);
-    // var y = yxdocument.getElementsByTagName("iframe")[0];
-    // console.log(y);
-    //x.document.getElementsByTagName("body")[0].style.backgroundColor = "blue";
-    // console.log("y:" + x.document.getElementsByTagName("body")[0]);
-    // this would turn the 1st iframe in document blue.
 
+    //send msg to dbr.html
+    document.querySelector('#btn_scan').onclick = function () {
+        iFrame = document.getElementById('iframe')
+        iFrame.contentWindow.postMessage("message", "*");
 
-    fetch_data();
-    //fix live_data table boarder
+    }
 
-    $("#live_data > div > table").removeClass("table");
-   
+    //dbr.html btn_close
+    //console.log(document.querySelector('iframe'));
+ 
 
 
     

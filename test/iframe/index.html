@@ -2,13 +2,16 @@
 <html>
 
 <head>
-    <title>Index</title>
+
+
 </head>
 
 <body>
 
-    <iframe src="iframe.html" width="300" height="300"></iframe>
+    <iframe id="iframe" src="iframe.html" width="300" height="300"></iframe>
 
+
+    <button>Send</button>
     <script type="text/javascript">
         var eventMethod = window.addEventListener ?
             "addEventListener" :
@@ -18,7 +21,7 @@
             "onmessage" :
             "message";
 
-        eventer(messageEvent, function(e) {
+        eventer(messageEvent, function (e) {
 
             // if (e.origin !== 'http://the-trusted-iframe-origin.com') return;
 
@@ -27,7 +30,17 @@
 
             console.log(e);
         });
+
+
+        document.querySelector('button').onclick = function () {
+            iFrame = document.getElementById('iframe')
+            iFrame.contentWindow.postMessage("message", "*");
+
+        }
+
     </script>
+
+
 </body>
 
 </html>
