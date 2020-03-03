@@ -1,3 +1,8 @@
+# v1.11
+
+2020-03-03
+update: README.md
+
 # v1.10
 
 2020-02-25
@@ -16,7 +21,7 @@ improve: scan.html code
 
 demo page https://aws.huizhao.ca
 
-# ipantry v.99
+# v0.99
 
 2020-02-19
 
