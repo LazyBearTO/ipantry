@@ -1,3 +1,8 @@
+# v1.10
+
+2020-02-25
+add: auto scan by dbr.html
+
 # v1.01
 
 2020-02-23

@@ -41,7 +41,7 @@ CREATE TABLE `scanned_item` (
   `trash_datetime` datetime DEFAULT NULL,
   `lastop_datetime` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -50,6 +50,7 @@ CREATE TABLE `scanned_item` (
 
 LOCK TABLES `scanned_item` WRITE;
 /*!40000 ALTER TABLE `scanned_item` DISABLE KEYS */;
+INSERT INTO `scanned_item` VALUES (1,'5449000000996','Coca Cola','Coca-Cola','https://static.openfoodfacts.org/images/products/544/900/000/0996/front_en.193.200.jpg','2020-02-29 09:14:34',NULL,NULL,'2020-02-29 09:14:34'),(2,'5449000000996','Coca Cola','Coca-Cola','https://static.openfoodfacts.org/images/products/544/900/000/0996/front_en.193.200.jpg','2020-02-29 09:21:03',NULL,NULL,'2020-02-29 09:21:03'),(3,'5449000000996','Coca Cola','Coca-Cola','https://static.openfoodfacts.org/images/products/544/900/000/0996/front_en.193.200.jpg',NULL,'2020-02-29 09:22:24',NULL,'2020-02-29 09:22:24'),(4,'5449000000996','Coca Cola','Coca-Cola','https://static.openfoodfacts.org/images/products/544/900/000/0996/front_en.193.200.jpg',NULL,NULL,'2020-02-29 09:22:26','2020-02-29 09:22:26');
 /*!40000 ALTER TABLE `scanned_item` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -62,4 +63,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-02-19 18:01:17
+-- Dump completed on 2020-02-29 14:06:18
