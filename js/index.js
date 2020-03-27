@@ -210,15 +210,9 @@ $(document).ready(function() {
 
 
     //send msg to dbr.html
-<<<<<<< HEAD
     // document.querySelector('#btn_scan').onclick = function () {
     //     iFrame = document.getElementById('iframe')
     //     iFrame.contentWindow.postMessage("message", "*");
-=======
-    document.querySelector('#btn_autoscan').onclick = function () {
-        iFrame = document.getElementById('iframe')
-        iFrame.contentWindow.postMessage("message", "*");
->>>>>>> b1488e0da301627b228b4ddf5106e2be09844fe4
 
     // }
 
