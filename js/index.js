@@ -196,11 +196,11 @@ $(document).ready(function() {
 
 
     //send msg to dbr.html
-    document.querySelector('#btn_scan').onclick = function () {
-        iFrame = document.getElementById('iframe')
-        iFrame.contentWindow.postMessage("message", "*");
+    // document.querySelector('#btn_scan').onclick = function () {
+    //     iFrame = document.getElementById('iframe')
+    //     iFrame.contentWindow.postMessage("message", "*");
 
-    }
+    // }
 
     //dbr.html btn_close
     //console.log(document.querySelector('iframe'));
