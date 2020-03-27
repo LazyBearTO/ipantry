@@ -34,6 +34,7 @@ $(document).ready(function() {
         $('#scanned_txt.form-control')[0].value = '';
 
     });
+    
     //edit tiem
     function edit_data(id, text, column_name) {
         $.ajax({
@@ -166,6 +167,19 @@ $(document).ready(function() {
         }
     });
 
+    //show network.php
+    $(document).on('click', '#btn_network', function() {
+        //alert("nn");
+        $.ajax({
+            url: "network.php",
+            method: "POST",
+            success: function(data) {
+                $('#live_data').html(data);
+            }
+        });
+        //$('#live_data').html(data);
+    });
+
 
     //listen message  from the iframe
     var eventMethod = window.addEventListener ?
@@ -196,16 +210,23 @@ $(document).ready(function() {
 
 
     //send msg to dbr.html
+<<<<<<< HEAD
     // document.querySelector('#btn_scan').onclick = function () {
     //     iFrame = document.getElementById('iframe')
     //     iFrame.contentWindow.postMessage("message", "*");
+=======
+    document.querySelector('#btn_autoscan').onclick = function () {
+        iFrame = document.getElementById('iframe')
+        iFrame.contentWindow.postMessage("message", "*");
+>>>>>>> b1488e0da301627b228b4ddf5106e2be09844fe4
 
     // }
 
     //dbr.html btn_close
     //console.log(document.querySelector('iframe'));
  
-
+    //network
+  
 
     
 });
