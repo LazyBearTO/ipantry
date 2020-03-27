@@ -1,68 +1,56 @@
 <html>
+	<head>
+		<title>Pantry</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="icon" href="img/favicon.ico" type="image/x-icon" />
+	</head>
 
-<head>
-<<<<<<< HEAD
-    <title>Pantry</title>
-=======
-    <title>iPantry</title>
->>>>>>> b1488e0da301627b228b4ddf5106e2be09844fe4
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="img/favicon.ico" type="image/x-icon">
-</head>
+	<body>
+		<!-- Please visit https://www.dynamsoft.com/CustomerPortal/Portal/TrialLicense.aspx to get a trial license. -->
+		<script
+			src="https://cdn.jsdelivr.net/npm/dynamsoft-javascript-barcode@7.3.0-v2/dist/dbr.js"
+			data-productKeys="t0068NQAAAHBvKHfqLNBBddgJlverD5FiFpYITdKUubM4+MDMgAlsMbvbd6rzDPf654UYadQ/Uc4KjZ734p77H2rtDqH56oM="
+		></script>
 
-<body>
+		<script>
+			Dynamsoft.BarcodeReader._bUseFullFeature = true; // Control of loading min wasm or full wasm.
 
-    <!-- Please visit https://www.dynamsoft.com/CustomerPortal/Portal/TrialLicense.aspx to get a trial license. -->
-    <script src="https://cdn.jsdelivr.net/npm/dynamsoft-javascript-barcode@7.3.0-v2/dist/dbr.js"
-        data-productKeys="t0068NQAAAHBvKHfqLNBBddgJlverD5FiFpYITdKUubM4+MDMgAlsMbvbd6rzDPf654UYadQ/Uc4KjZ734p77H2rtDqH56oM="></script>
+			// scanner for decoding video
+			let scanner = null;
 
-    <script>
-        Dynamsoft.BarcodeReader._bUseFullFeature = true; // Control of loading min wasm or full wasm.
+			// decode video from camera
 
-        // scanner for decoding video
-        let scanner = null;
+			(async () => {
+				scanner = await Dynamsoft.BarcodeScanner.createInstance();
+				// scanner.onFrameRead = results => {
+				//     console.log(results);
+				// };
+				scanner.onUnduplicatedRead = (txt, result) => {
+					//alert(txt);
+					var xmlhttp = new XMLHttpRequest();
+					// xmlhttp.open("POST", "insert.php", true);
+					// xmlhttp.send("scanned_txt" + txt);
 
-        // decode video from camera
+					xmlhttp.open("GET", "insert.php?q=" + txt, true);
+					xmlhttp.send();
 
-        (async () => {
-            scanner = await Dynamsoft.BarcodeScanner.createInstance();
-            // scanner.onFrameRead = results => {
-            //     console.log(results);
-            // };
-            scanner.onUnduplicatedRead = (txt, result) => {
-                //alert(txt);
-                var xmlhttp = new XMLHttpRequest();
-                // xmlhttp.open("POST", "insert.php", true);
-                // xmlhttp.send("scanned_txt" + txt);
+					//redirect to index.html
+					xmlhttp.onload = function() {
+						if (xmlhttp.status == 200) {
+							window.location = "/";
+						}
+					};
+					scanner.hide() = function() {
+						window.location = "/";
+					};
+				};
+				await scanner.show();
 
-                xmlhttp.open("GET", "insert.php?q=" + txt, true);
-                xmlhttp.send();
-
-                //redirect to index.html
-                xmlhttp.onload = function () {
-                    if (xmlhttp.status == 200) {
-                        window.location = '/';
-                    }
-                };
-                scanner.hide() = function () {
-
-                    window.location = '/';
-
-                };
-            };
-            await scanner.show();
-
-
-            document.querySelector('.dbrScanner-btn-close').onclick = function () {
-
-                console.log(document.querySelector('.dbrScanner-btn-close'));
-                window.location = '/';
-
-            }
-        })();
-
-
-    </script>
-</body>
-
+				document.querySelector(".dbrScanner-btn-close").onclick = function() {
+					console.log(document.querySelector(".dbrScanner-btn-close"));
+					window.location = "/";
+				};
+			})();
+		</script>
+	</body>
 </html>
