@@ -1,3 +1,8 @@
+# v1.12
+
+2020-03-27
+merge mobile and pc scan page
+
 # v1.11
 
 2020-03-03
