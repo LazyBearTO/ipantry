@@ -7,10 +7,9 @@
     <link rel="icon" href="img/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
-    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
     <script src="js/index.js"></script>
 
 </head>
@@ -28,9 +27,10 @@
                     </div> -->
                     <nav class="navbar navbar-light bg-light">
                         <a href="scan.html">
-                            <button type="button" class="btn btn-success btn-lg active">Mobile</button></a>
-                        <a href="zxing.html">
-                            <button type="button" class="btn btn-success btn-lg active">PC</button></a>
+                            <button type="button" class="btn btn-success btn-lg inactive"><span
+                                    class="glyphicon glyphicon-search" /></button></a>
+                        <!-- <a href="zxing.html">
+                            <button type="button" class="btn btn-success btn-lg active">PC</button></a> -->
 
                         <!-- <button id="btn_scan" class="navbar-toggler btn btn-success btn-lg active" type="button"
                             data-toggle="collapse" data-target="#navbarToggleExternalContent"
@@ -39,17 +39,18 @@
                             Auto
                         </button> -->
 
-                        <button id="btn_reset" type="button" class="btn btn-warning btn-lg active">Reset</button>
+                        <button id="btn_reset" type="button" class="btn btn-warning btn-lg"><span
+                                class="fa fa-repeat" /></button>
 
                     </nav>
                 </div>
             </h4>
 
 
-            <input id="scanned_txt" type="text" class="form-control" placeholder="enter barcode here then press enter"
+            <!-- <input id="scanned_txt" type="text" class="form-control" placeholder="enter barcode here then press enter"
                 style="display:table-column;width:80%" value="063348006936" />
 
-            <button type="submit" name="btn_add" id="btn_add" class="btn btn-s btn-primary">Enter</button>
+            <button type="submit" name="btn_add" id="btn_add" class="btn btn-s btn-primary">Enter</button> -->
 
             <div id="live_data"></div>
         </div>

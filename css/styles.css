@@ -1,30 +1,63 @@
 .notification {
-  text-decoration: none;
-  padding: 5px;
-  position: relative;
-  display: inline-block;
-  border-radius: 2px;
+	text-decoration: none;
+	padding: 5px;
+	position: relative;
+	display: inline-block;
+	border-radius: 2px;
 }
 
 .notification:hover {
-  background: red;
+	background: red;
 }
 
 .notification .badge_right {
-  position: absolute;
-  top: 5px;
-  right: 0px;
-  padding: 5px 10px;
-  border-radius: 50%;
-  background: red;
-  color: white;
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	padding: 5px 10px;
+	border-radius: 50%;
+	background: red;
+	color: white;
 }
 .notification .badge_left {
-  position: absolute;
-  left: 0px;
-  top: 5px;
-  padding: 5px 10px;
-  border-radius: 50%;
-  background: #5cb85c;
-  color: white;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	padding: 5px 10px;
+	border-radius: 50%;
+	background: #5cb85c;
+	color: white;
+}
+.scanned_txt {
+	display: none;
+}
+.img-thumbnail {
+	/* max-width: unset; */
+	height: 100%;
+}
+.brand_name {
+	display: none;
+}
+.product_name {
+	display: none;
+}
+
+.table > tbody > tr > td,
+.table > tbody > tr > th,
+.table > tfoot > tr > td,
+.table > tfoot > tr > th,
+.table > thead > tr > td,
+.table > thead > tr > th {
+	border-top: unset;
+}
+
+.btn_stock_left {
+	position: absolute;
+	left: 0px;
+	bottom: 0px;
+}
+.btn_stock_right {
+	position: absolute;
+	right: 0px;
+	bottom: 0px;
 }
