@@ -1,3 +1,6 @@
+Need MySQL 10.3 to support Window Functions
+
+
 # v1.13
 
 2020-04-10
