@@ -32,7 +32,7 @@ improve: scan.html code
 
 2020-02-20
 
-demo page https://aws.huizhao.ca
+demo page https://huizhao.ca
 
 # v0.99
 
