@@ -1,3 +1,6 @@
+iPantry
+
+a inventory management by scanning barcode.
 
 Demo page https://joeyz.ca
 DEMO video https://youtu.be/cfZdNDRAFEo 
