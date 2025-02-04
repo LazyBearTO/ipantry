@@ -1,13 +1,6 @@
 iPantry
 
-a inventory management by scanning barcode.
-
-Demo page https://joeyz.ca
-DEMO video https://youtu.be/cfZdNDRAFEo 
-
-
-
-Need MySQL 10.3 to support Window Functions
+A inventory management by scanning barcode.
 
 
 # v1.13
